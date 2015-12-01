@@ -7,6 +7,7 @@ A GasT test file is a Javascript which defining test cases. Under the hood, each
 ```javascript
 var gastLibUrl='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
 eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
+
 var test = GasTap.setPrintDriver('Logger') 
 
 function gast() {
