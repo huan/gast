@@ -1,7 +1,11 @@
-// this is the default logger setting
-var test = GasTap
-.setPrintDriver('Logger') 
+eval(UrlFetchApp.fetch("https://raw.githubusercontent.com/zixia/tap-google-apps-script/master/gas-tap.js").getContentText())
+var test = GasTap.setPrintDriver('Logger') 
 
+/**
+*
+* Put tests in me, then run me!
+*
+*/
 function tap() {
   
   test('TAP ok', function (t) {
