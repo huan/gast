@@ -1,11 +1,12 @@
-# GasT - Google Apps Script Testing System
+# GasT - Google Apps Script Testing-framework
 
 GasT is a TAP-compliant testing framework for Google Apps Script. It provides a simple way to verify that the GAS programs you write behave as expected.
 
 A GasT test file is a Javascript which defining test cases. Under the hood, each test case is just a function with a description.
 
 ```javascript
-eval(UrlFetchApp.fetch("https://raw.githubusercontent.com/zixia/tap-google-apps-script/master/gas-tap.js").getContentText())
+var gastLibUrl = 'https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
+eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
 var test = GasTap.setPrintDriver('Logger') 
 
 function gast() {
@@ -20,6 +21,7 @@ function gast() {
   })
 
   test.finish()
+}
 ```
 
 GasT is most useful when testing javascript running on Google Apps Script environment. if you are running out of GAS, there's other TAP testing framework as well, such as [TAPE - a tap-producing test harness for node and browsers](https://github.com/substack/tape).
@@ -27,20 +29,29 @@ GasT is most useful when testing javascript running on Google Apps Script enviro
 Test cases consist of Google Apps Scripts. 
 
 
+## Writing tests
+
+TBW.
+
+ There's a very simple example at https://github.com/zixia/gast/blob/master/gas-tests.js , which is the test suite of GasT itself.
+
+
 ## Running tests
+
+Open script editor, create a script file named Tests.gs, paste [tests of GasT](https://github.com/zixia/gast/blob/master/gas-tests.js) into it, then click Run in menu, select function ```gast``` . After click, you will see a message "Running function gast...". Wait till the message gone, then click View in menu, select Logs. You will see the output like the following snapshot.
 
 
 ### Screen Snapshoot
-![Test Anything Protocol(TAP) for Google Apps Script](https://raw.githubusercontent.com/zixia/tap-google-apps-script/master/gas-tap.png)
+![Test Anything Protocol(TAP) for Google Apps Script](https://raw.githubusercontent.com/zixia/gast/master/gas-tap.png)
 
-## Writing tests
 
 ## Using GasT in Google Apps Script
 
 Install GasT is very easy: just copy/paste the following javascript code to your Code.gs file, then you are ready to use GasT.
 
 ```javascript
-eval(UrlFetchApp.fetch("https://raw.githubusercontent.com/zixia/tap-google-apps-script/master/gas-tap.js").getContentText())
+var gastLibUrl = 'https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
+eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
 var test = GasTap.setPrintDriver('Logger') 
 ```
 
@@ -54,9 +65,10 @@ function gast() {
   })
 
   test.finish()
+}
 ```
 
-Note that you need to run keep `test.finish()` at the end of function, because it need to output the summary of all tests..
+Note that remember to keep `test.finish()` at the end of function, because it need to output the summary of all tests.
 
 
 ## Support
