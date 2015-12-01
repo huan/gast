@@ -44,6 +44,7 @@ Open [google apps script editor](https://script.google.com), create a script fil
 ### Screen Snapshoot
 ![Test Anything Protocol(TAP) for Google Apps Script](https://raw.githubusercontent.com/zixia/gast/master/gas-tap.png)
 
+A online version of google spreadsheet bounded with GasT google apps scripts can be found here: https://docs.google.com/spreadsheets/d/19M2DY3hunU6tDQFX5buJmZ_f3E8VFmlqAtodyC-J8Ag
 
 ## Using GasT in Google Apps Script
 
