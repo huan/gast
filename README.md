@@ -5,7 +5,7 @@ GasT is a TAP-compliant testing framework for Google Apps Script. It provides a 
 A GasT test file is a Javascript which defining test cases. Under the hood, each test case is just a function with a description.
 
 ```javascript
-var gastLibUrl = 'https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
+var gastLibUrl='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
 eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
 var test = GasTap.setPrintDriver('Logger') 
 
@@ -38,7 +38,7 @@ TBW.
 
 ## Running tests
 
-Open script editor, create a script file named Tests.gs, paste [tests of GasT](https://github.com/zixia/gast/blob/master/gas-tests.js) into it, then click Run in menu, select function ```gast``` . After click, you will see a message "Running function gast...". Wait till the message gone, then click View in menu, select Logs. You will see the output like the following snapshot.
+Open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/zixia/gast/blob/master/gas-tests.js) into it, then click Run in menu, select function ```gast``` . After click, you will see a message "Running function gast...". Wait till the message gone, then click View in menu, select Logs. You will see the output like the following snapshot.
 
 
 ### Screen Snapshoot
