@@ -2,13 +2,13 @@
 /**
 *
 * Test Anything Protocol(TAP) for Google Apps Script
-* https://github.com/zixia/tap-google-apps-script
 *
-* Issues: https://github.com/zixia/tap-google-apps-script/issues
-* Author: Zhuohuan LI <zixia@zixia.net>
-* Date: 2015-11-05
+* https://github.com/zixia/gast
 *
 * Test Anything Protocol - http://testanything.org/
+* Issues: https://github.com/zixia/gast/issues
+* Author: Zhuohuan LI <zixia@zixia.net>
+* Date: 2015-11-05
 *
 */
 
@@ -88,7 +88,7 @@ var GasTap = (function () {
   test_.setPrintDriver = setPrintDriver
   test_.finish = finish
   
-  print('TAP version GAS v0.1.0')
+  print('TAP version GasT v0.1.1(BUGGY)')
   
   return test_
   

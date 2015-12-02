@@ -1,4 +1,20 @@
-eval(UrlFetchApp.fetch("https://raw.githubusercontent.com/zixia/tap-google-apps-script/master/gas-tap.js").getContentText())
+'use strict'
+/**
+*
+* Test Anything Protocol(TAP) for Google Apps Script
+*
+* https://github.com/zixia/gast
+*
+* Test Anything Protocol - http://testanything.org/
+* Issues: https://github.com/zixia/gast/issues
+* Author: Zhuohuan LI <zixia@zixia.net>
+* Date: 2015-11-05
+*
+*/
+
+var gasLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
+eval(UrlFetchApp.fetch(gasLib).getContentText())
+
 var test = GasTap.setPrintDriver('Logger') 
 
 /**
@@ -6,7 +22,7 @@ var test = GasTap.setPrintDriver('Logger')
 * Put tests in me, then run me!
 *
 */
-function tap() {
+function gast() {
   
   test('TAP ok', function (t) {
     t.ok(true, 'true is ok')
