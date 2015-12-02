@@ -1,10 +1,10 @@
 # GasT - Google Apps Script Testing-framework
 
-GasT is a TAP-compliant testing framework for Google Apps Script. It provides a simple way to verify that the GAS programs you write behave as expected.
+GasT is a [TAP](http://testanything.org/)-compliant testing framework for Google Apps Script. It provides a simple way to verify that the GAS programs you write behave as expected.
 
 Github - https://github.com/zixia/gast
 
-A GasT unit testing file is a Javascript which defining unit testing cases. Under the hood, each test case is just a function with a description.
+A GasT unit testing file is a Javascript which defining unit testing cases. Under the hood, each test case is just a function with a description, and output as TAP format.
 
 ```javascript
 var gastLibUrl='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
@@ -31,11 +31,47 @@ GasT is most useful when testing javascript running on Google Apps Script enviro
 
 Test cases consist of Google Apps Scripts. 
 
+## About TAP
 
-## TAP Output Sample
+TAP is Test Anything Protocol, as understood by Perl 1.0's t/TEST on year 1988.
+```
+commit 840163baa12f7970131f7841c479bccf5be40ba9
+Author: Larry Wall <lwall@jpl-devvax.jpl.nasa.gov>
+Date:   Sat Jan 30 23:00:00 1988 +0000
+```
+
+Version 2 implemented on year 1996.
+```
+commit 4bce96efdcaa480e392138e10166c92c5fc5f22c
+Author: Perl 5 Porters <perl5-porters@africa.nicoh.com>
+Date:   Fri Feb 2 18:52:27 1996 -0800
+```
+
+More TAP History: http://testanything.org/history.html
+
+Today, TAP is widely supported as unit testing framework for test harness or automated test framework, in almost all languages. [TAP has Producers in](http://testanything.org/producers.html): Ada, Arc (Lisp Dialect), C / C++, MyTAP (for MySQL), Common Lisp, Erlang, Limbo (OS Inferno), Forth, Go, Haskell, Java, Javascript, Lua, MATLAB, OCaml, Pascal, Perl, PostgreSQL, Prolog, Python, Ruby, PHP, PL/SQL, SH / Shell Script, DB2 SQL PL, Test and developer tools, Web services etc.
+
+TAP Specification: http://testanything.org/tap-specification.html
+TAP Specification 13: http://testanything.org/tap-version-13-specification.html
+
+
+## Writing tests
+
+TBW.
+
+ There's a very simple example at https://github.com/zixia/gast/blob/master/gas-tests.js , which is the test suite of GasT itself.
+
+
+## Running tests
+
+To run your tests, open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/zixia/gast/blob/master/gas-tests.js) into it, then click Run in menu, select function ```gast``` . After click, you will see a message "Running function gast...". Wait till the message gone, then click View in menu, select Logs. You will see the output like the following snapshot.
+
+If GasT is use the default printDriver Logger, it will print message in Google Apps Script Logger.log(). not run inside google apps script—in other words, if you run it from a continuous integration system, you can use other printDriver like ```ConsoleLog```(not support yet, at least v0.1.0), it will output machine-parsable TAP format.
+
+GasT always use TAP format output(it's buggy now, more fix needed).
 
 ```tap
-TAP version GAS v0.1.0
+TAP version GasT v0.1.0(BUGGY)
 ok 1 - true is ok - TAP ok
 ok 2 - false is not ok - TAP ok
 ok 3 - true equal true - TAP equal
@@ -49,19 +85,6 @@ not ok 10 - this should fail # FAIL - TAP fail
 1..10
 10 tests, 1 failures, 1 skipped
 ```
-
-
-## Writing tests
-
-TBW.
-
- There's a very simple example at https://github.com/zixia/gast/blob/master/gas-tests.js , which is the test suite of GasT itself.
-
-
-## Running tests
-
-Open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/zixia/gast/blob/master/gas-tests.js) into it, then click Run in menu, select function ```gast``` . After click, you will see a message "Running function gast...". Wait till the message gone, then click View in menu, select Logs. You will see the output like the following snapshot.
-
 
 ### Screen Snapshoot
 ![Test Anything Protocol(TAP) for Google Apps Script](https://raw.githubusercontent.com/zixia/gast/master/gas-tap.png)
