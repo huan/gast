@@ -32,6 +32,25 @@ GasT is most useful when testing javascript running on Google Apps Script enviro
 Test cases consist of Google Apps Scripts. 
 
 
+## TAP Output Sample
+
+```tap
+TAP version GAS v0.1.0
+ok 1 - true is ok - TAP ok
+ok 2 - false is not ok - TAP ok
+ok 3 - true equal true - TAP equal
+ok 4 - true not equal false - TAP equal
+ok 5 - exception throwed - TAP exception
+ok 6 - no exception found - TAP exception
+ok 7 - unknown driver throws exception - TAP setPrintDriver
+ok 8 - skipped # SKIP - TAP skip
+ok 9 - passed # PASS - TAP pass
+not ok 10 - this should fail # FAIL - TAP fail
+1..10
+10 tests, 1 failures, 1 skipped
+```
+
+
 ## Writing tests
 
 TBW.
@@ -59,7 +78,7 @@ eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
 var test = GasTap.setPrintDriver('Logger') 
 ```
 
-To use GasT, we need a wraper test function(to run inside Script Editor). The following code is a start template, you can add more test inside the function gast().
+To use GasT, we need a wraper function(to run inside Script Editor). The following code is a start template, you can add more test in the gast() function, then run gast() to see the test result.
 
 ```javascript
 function gast() {
