@@ -15,12 +15,12 @@ var test = GasTap.setPrintDriver('Logger')
 function gast() {
   test('do calculation right', function (t) {    
   	var i = 3 + 4
-    t.equal(i, 7, 'I can calc 3 + 4 = 7')
+    t.equal(i, 7, 'calc 3 + 4 = 7 right')
   })
 
   test('Spreadsheet exist', function (t) {
 	var ss = SpreadsheetApp.openById('1TBJpvlW3WWney4rk1yW5N9bAP8dOMkWxI97dOtco-fc')
-    t.ok(ss, 'I can open spreadsheet')
+    t.ok(ss, 'open spreadsheet successful')
   })
 
   test.finish()
@@ -82,9 +82,14 @@ To use GasT, we need a wraper function(to run inside Script Editor). The followi
 
 ```javascript
 function gast() {
-  test('do calculation right', function (t) {    
+  test('calculation', function (t) {
   	var i = 3 + 4
-    t.equal(i, 7, 'I can calc 3 + 4 = 7')
+    t.equal(i, 7, 'calc 3 + 4 = 7 right')
+  })
+
+  test('number convertion', function (t) {
+    var i = parseInt('0e0', 16)
+    t.equal(i, 224, 'parseInt')
   })
 
   test.finish()
