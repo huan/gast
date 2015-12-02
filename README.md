@@ -4,7 +4,7 @@ GasT is a TAP-compliant testing framework for Google Apps Script. It provides a 
 
 Github - https://github.com/zixia/gast
 
-A GasT test file is a Javascript which defining test cases. Under the hood, each test case is just a function with a description.
+A GasT unit testing file is a Javascript which defining unit testing cases. Under the hood, each test case is just a function with a description.
 
 ```javascript
 var gastLibUrl='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
