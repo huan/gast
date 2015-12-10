@@ -7,8 +7,8 @@ Github - https://github.com/zixia/gast
 A GasT unit testing file is a Javascript which defining unit testing cases. Under the hood, each test case is just a function with a description, and output as TAP format.
 
 ```javascript
-var gastLibUrl='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
-var GasTap = eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
+var gastLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
+var GasTap=eval(UrlFetchApp.fetch(gastLib).getContentText())
 
 var test = GasTap.setPrintDriver('Logger') 
 
@@ -89,7 +89,9 @@ not ok 10 - this should fail # FAIL - TAP fail
 ### Screen Snapshoot
 ![Test Anything Protocol(TAP) for Google Apps Script](https://raw.githubusercontent.com/zixia/gast/master/gas-tap.png)
 
-A online version of google spreadsheet bounded with GasT google apps scripts can be found here: https://docs.google.com/spreadsheets/d/19M2DY3hunU6tDQFX5buJmZ_f3E8VFmlqAtodyC-J8Ag
+A online version of google spreadsheet bounded with GasT google apps scripts can be found here: 
+* Spreadsheet - https://docs.google.com/spreadsheets/d/19M2DY3hunU6tDQFX5buJmZ_f3E8VFmlqAtodyC-J8Ag
+* Script editor - https://script.google.com/a/zixia.net/macros/d/Mta4oea1VMIugfSGRo4QrAnKRT9d30hqB/edit?uiv=2&mid=ACjPJvGt4gnXjJwXnToB0jIMEbSvqKUF6vH-uq-m59SqnjXqTQ03NDn_khlNE6ha_mPnrOAYEnyFk80nHYmt_hppO3AgDkO_vVLrYJXzcPPagwRromd0znfLreNFAu4p0rYTC-Jlo-sAKOM
 
 ## Using GasT in Google Apps Script
 
