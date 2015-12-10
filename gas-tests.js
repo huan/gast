@@ -16,10 +16,11 @@
 *
 */
 
-var gasLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
-eval(UrlFetchApp.fetch(gasLib).getContentText())
+var gastLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
+var gastLibSource=UrlFetchApp.fetch(gastLib).getContentText()
 
-var test = GasTap.setPrintDriver('Logger') 
+var GasTap = eval(gastLibSource)
+var test = GasTap.setPrintDriver('Logger')
 
 /**
 *

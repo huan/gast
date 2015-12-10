@@ -1,22 +1,22 @@
-'use strict'
-/**
-*
-* GasT - Google Apps Script Testing-framework
-*
-* GasT is a TAP-compliant testing framework for Google Apps Script. 
-* It provides a simple way to verify that the GAS programs you write 
-* behave as expected.
-*
-* Github - https://github.com/zixia/gast
-* Test Anything Protocol - http://testanything.org/
-*
-* Issues: https://github.com/zixia/gast/issues
-* Author: Zhuohuan LI <zixia@zixia.net>
-* Date: 2015-11-05
-*
-*/
+(function () {
+  'use strict'
 
-var GasTap = (function () {
+  /**
+  *
+  * GasT - Google Apps Script Testing-framework
+  *
+  * GasT is a TAP-compliant testing framework for Google Apps Script. 
+  * It provides a simple way to verify that the GAS programs you write 
+  * behave as expected.
+  *
+  * Github - https://github.com/zixia/gast
+  * Test Anything Protocol - http://testanything.org/
+  *
+  * Issues: https://github.com/zixia/gast/issues
+  * Author: Zhuohuan LI <zixia@zixia.net>
+  * Date: 2015-11-05
+  *
+  */
 
   var EXCEPTION_SKIP = 'GasTapSkip'
   var EXCEPTION_PASS = 'GasTapPass'

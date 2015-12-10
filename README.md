@@ -8,7 +8,7 @@ A GasT unit testing file is a Javascript which defining unit testing cases. Unde
 
 ```javascript
 var gastLibUrl='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
-eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
+var GasTap = eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
 
 var test = GasTap.setPrintDriver('Logger') 
 
@@ -97,7 +97,8 @@ Install GasT is very easy: just copy/paste the following javascript code to your
 
 ```javascript
 var gastLibUrl = 'https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
-eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
+var GasTap = eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
+
 var test = GasTap.setPrintDriver('Logger') 
 ```
 
@@ -130,6 +131,10 @@ For real-world examples from open-source projects using GasT, see Projects Using
 
 
 ## Version history
+
+### 0.2.0 (December 10, 2015)
+* Get rid of global variable GasTap in library.
+* Must use eval to return a GasTap module object.
 
 ### 0.1.0 (December 2, 2015)
 * Initial public release.
