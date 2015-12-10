@@ -1,10 +1,10 @@
 # GasT - Google Apps Script Testing-framework
 
-GasT is a [TAP](http://testanything.org/)-compliant testing framework for Google Apps Script. It provides a simple way to verify that the GAS programs you write behave as expected.
+GasT is a [TAP](http://testanything.org/)-compliant testing framework for Google Apps Script(GAS). It provides a simple way to verify that the GAS programs you write behave as expected.
 
-Github - https://github.com/zixia/gast
+Github: https://github.com/zixia/gast
 
-A GasT unit testing file is a Javascript which defining unit testing cases. Under the hood, each test case is just a function with a description, and output as TAP format.
+A GasT unit testing file is a Javascript which defining GAS unit testing cases. Under the hood, each GAS test case is just a function with a description, and output as TAP format.
 
 ```javascript
 var gastLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
@@ -19,7 +19,8 @@ function gast() {
   })
 
   test('Spreadsheet exist', function (t) {
-	var ss = SpreadsheetApp.openById('1TBJpvlW3WWney4rk1yW5N9bAP8dOMkWxI97dOtco-fc')
+    var url = 'https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0'
+	  var ss = SpreadsheetApp.openByUrl(url)
     t.ok(ss, 'open spreadsheet successful')
   })
 
@@ -57,10 +58,85 @@ TAP Specification 13: http://testanything.org/tap-version-13-specification.html
 
 ## Writing tests
 
-TBW.
+There's a very simple example at https://github.com/zixia/gast/blob/master/gas-tests.js , which is the test suite of GasT itself.
 
- There's a very simple example at https://github.com/zixia/gast/blob/master/gas-tests.js , which is the test suite of GasT itself.
+### `test(msg, cb)`: Create sub test
 
+Create a new test with a description. cb(t) fires with the new test object t once all preceeding tests have finished. Tests execute serially.
+
+```javascript
+  test('I am a test', function (t) {
+    t.ok(true, 'true is ok')
+  })
+```
+
+### `t.ok(value, msg)`
+
+Assert that `value` is truthy with an optional description message `msg`.
+
+### `t.notOk(value, msg)`
+
+Assert that `value` is falsy with an optional description message `msg`.
+
+### `t.equal(actual, expected, msg)`
+
+Assert that `actual == expected` with an optional description `msg`.
+
+### `t.notEqual(actual, expected, msg)`
+
+Assert that `actual != expected` with an optional description `msg`.
+
+### `t.throws(fn, msg)`
+
+Assert that the function call `fn()` throws an exception. 
+
+### `t.notThrow(fn, msg)`
+
+Assert that the function call `fn()` does not throw an exception.
+
+### `t.pass(msg)`
+
+Generate a passing assertion with a message `msg`.
+
+### `t.fail(msg)`
+
+Generate a failing assertion with a message `msg`.
+
+### `t.skip`: Easily skip tests
+
+Tests can be skipped by using the t.skip function at the point in a test you wish to skip.
+
+
+```javascript
+test('A test I do not want to execute for now', function (t) {  
+  t.skip()
+  var ret = foo()
+  t.ok(ret)
+})
+```
+
+Optionally, you may include a reason for skipping:
+
+```javascript
+test('A test I do not want to execute for now', function (t) {  
+  t.skip('This function will return true soon, but not now')
+  var ret = foo()
+  t.ok(ret)
+})
+```
+
+Or you can skip conditionally:
+
+```javascript
+test('A test which should run', function (t) {  
+  if (foo != bar) {
+    t.skip('foo is not bar')
+  }
+
+  var ret = foo()
+  t.ok(ret)
+})
+```
 
 ## Running tests
 
@@ -98,8 +174,8 @@ A online version of google spreadsheet bounded with GasT google apps scripts can
 Install GasT is very easy: just copy/paste the following javascript code to your Code.gs file, then you are ready to use GasT.
 
 ```javascript
-var gastLibUrl = 'https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
-var GasTap = eval(UrlFetchApp.fetch(gastLibUrl).getContentText())
+var gastLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
+var GasTap=eval(UrlFetchApp.fetch(gastLib).getContentText())
 
 var test = GasTap.setPrintDriver('Logger') 
 ```
