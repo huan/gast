@@ -203,9 +203,9 @@ Note that remember to keep `test.finish()` at the end of function, because it ne
 
 ## Support
 
-The GasT source code repository is hosted on GitHub. There you can file bugs on the issue tracker or submit tested pull requests for review. ( https://github.com/zixia/tap-google-apps-script/issues )
+The GasT source code repository is hosted on GitHub. There you can file bugs on the issue tracker or submit tested pull requests for review. ( https://github.com/zixia/gast/issues )
 
-For real-world examples from open-source projects using GasT, see Projects Using TasT on the wiki. ( https://github.com/zixia/tap-google-apps-script/wiki )
+For real-world examples from open-source projects using GasT, see Projects Using TasT on the wiki. ( https://github.com/zixia/gast/wiki )
 
 
 ## Version history
