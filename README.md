@@ -7,10 +7,11 @@ Github: https://github.com/zixia/gast
 A GasT unit testing file is a Javascript which defining GAS unit testing cases. Under the hood, each GAS test case is just a function with a description, and output as TAP format.
 
 ```javascript
-var gastLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
-var GasTap=eval(UrlFetchApp.fetch(gastLib).getContentText())
+if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
+} // Class GasTap is ready for use now!
 
-var test = GasTap.setPrintDriver('Logger') 
+var test = new GasTap()
 
 function gast() {
   test('do calculation right', function (t) {    
@@ -58,7 +59,7 @@ TAP Specification 13: http://testanything.org/tap-version-13-specification.html
 
 ## Writing tests
 
-There's a very simple example at https://github.com/zixia/gast/blob/master/gas-tests.js , which is the test suite of GasT itself.
+There's a very simple example at https://github.com/zixia/gast/blob/master/src/gas-tests.js , which is the test suite of GasT itself.
 
 ### `test(msg, cb)`: Create sub test
 
@@ -140,7 +141,7 @@ test('A test which should run', function (t) {
 
 ## Running tests
 
-To run your tests, open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/zixia/gast/blob/master/gas-tests.js) into it, then click Run in menu, select function ```gast``` . After click, you will see a message "Running function gast...". Wait till the message gone, then click View in menu, select Logs. You will see the output like the following snapshot.
+To run your tests, open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/zixia/gast/blob/master/src/gas-tests.js) into it, then click Run in menu, select function ```gast``` . After click, you will see a message "Running function gast...". Wait till the message gone, then click View in menu, select Logs. You will see the output like the following snapshot.
 
 If GasT is use the default printDriver Logger, it will print message in Google Apps Script Logger.log(). not run inside google apps script—in other words, if you run it from a continuous integration system, you can use other printDriver like ```ConsoleLog```(not support yet, at least v0.1.0), it will output machine-parsable TAP format.
 
@@ -174,10 +175,11 @@ A online version of google spreadsheet bounded with GasT google apps scripts can
 Install GasT is very easy: just copy/paste the following javascript code to your Code.gs file, then you are ready to use GasT.
 
 ```javascript
-var gastLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
-var GasTap=eval(UrlFetchApp.fetch(gastLib).getContentText())
+if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
+} // Class GasTap is ready for use now!
 
-var test = GasTap.setPrintDriver('Logger') 
+var test = new GasTap()
 ```
 
 To use GasT, we need a wraper function(to run inside Script Editor). The following code is a start template, you can add more test in the gast() function, then run gast() to see the test result.
@@ -200,6 +202,61 @@ function gast() {
 
 Note that remember to keep `test.finish()` at the end of function, because it need to output the summary of all tests.
 
+### How to print TAP result other than Logger.log
+
+GasTap use Google Apps Script's standard log function Logger.log to default output.
+
+If you want to output the result to a Spreadsheet or other places, it's very easy to use the `printer` option to inject a output function.
+
+```javascript
+var test = new GasTap({
+  printer: function (msg) { Logger.log(msg) }
+})
+```
+
+Above is the default setting of GasTap. You can change the printer function to whatever you want, as long as the function accept a parameter.
+
+The following example set GasTap to output test tap result to a google spreadsheet, using a log library writen by me: [GasL](https://github.com/zixia/gasl) (GasL is a unix syslog like logging framework for Google Apps Script(GAS). It provides easy way for the GAS programs to log messages to Spreadsheet, LogEntries, RESTFUL API and Logger of GAS.)
+
+```javascript
+/**
+*
+* Load Libraries
+*
+*/
+if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
+} // Class GasTap is ready for use now!
+
+if ((typeof GasLog)==='undefined') { // GasL Initialization. (only if not initialized yet.)
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gasl/master/src/gas-log-lib.js').getContentText())
+} // Class GasLog is ready for use now!
+
+/**
+*
+* Create a log function that write to google spreadsheet
+*
+*/
+var sheetPrinter = new GasLog.Printer.Spreadsheet({
+  url: 'https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0'
+  , sheetName: 'GasTap'
+})
+
+var log = new GasLog({
+  printer: sheetPrinter
+  , ident: 'GasT'
+})
+
+/**
+*
+* use the log function above to output test TAP results to Google Spreadsheet:
+* https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0
+*
+*/
+var test = new GasTap({
+  logger: log
+})
+```
 
 ## Support
 
