@@ -273,7 +273,12 @@ For real-world examples from open-source projects using GasT, see Projects Using
 Use v0.2.0 in GAS
 
 ```javascript
-if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+/**
+*
+* GasT v0.2.0 Initialization. (only if not initialized yet.)
+*
+*/
+if ((typeof GasTap)==='undefined') { 
   eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/v0.2.0/src/gas-tap-lib.js').getContentText())
 } // Class GasTap is ready for use now!
 ```
