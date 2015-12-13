@@ -1,6 +1,7 @@
-(function () {
+var GasTap = (function () {
   'use strict'
 
+  var VERSION = '0.2.0'
   /**
   *
   * GasT - Google Apps Script Testing-framework
@@ -22,219 +23,231 @@
   var EXCEPTION_PASS = 'GasTapPass'
   var EXCEPTION_FAIL = 'GasTapFail'
   
-  var totalSucc = 0
-  var totalFail = 0
-  var totalSkip = 0
-  
-  var t = {    
-    nIndex: 0
-    , nSucc: 0
-    , nFail: 0
-    , nSkip: 0
-    , description: 'unknown description'
+  var GasTap = function (options) {
     
-    , ok: ok
-    , notOk: notOk
+    var totalSucc = 0
+    var totalFail = 0
+    var totalSkip = 0
     
-    , equal: equal
-    , notEqual: notEqual
-    
-    , throws: throws
-    , notThrow: notThrow
-    
-    , skip: skip
-    , pass: pass
-    , fail: fail
-  }
-  
-  var printDriver = function () { throw Error('undefined print driver!') }
-  setPrintDriver('Logger')
-  
-  var test_ = function (description, run) {  
-    
-    t.nSucc = t.nFail = t.nSkip = 0
-    t.description = description
-    
-    try {
+    var t = {    
+      counter: 0
+      , succCounter: 0
+      , failCounter: 0
+      , skipCounter: 0
+      , description: 'unknown description'
       
-      run(t)
+      , ok: ok
+      , notOk: notOk
       
-    } catch ( e ) {
-//      Logger.log('caught exception: ' + e)
+      , equal: equal
+      , notEqual: notEqual
       
-      SKIP_RE = new RegExp(EXCEPTION_SKIP)
-      PASS_RE = new RegExp(EXCEPTION_PASS)
-      FAIL_RE = new RegExp(EXCEPTION_FAIL)
+      , throws: throws
+      , notThrow: notThrow
       
-      switch (true) {
-        case SKIP_RE.test(e):
-        case PASS_RE.test(e):
-        case FAIL_RE.test(e):
-          break;
-        default:
-          throw e
-      }      
-    } finally { 
-      totalSucc += t.nSucc
-      totalFail += t.nFail
-      totalSkip += t.nSkip
-//      print('nSucc: %s, nFail: %s, nSkip: %s', t.nSucc, t.nFail, t.nSkip)
-    }
-  }
-  
-
-  
-  /***************************************************************
-  *
-  * Static methods of GasTap Class
-  *
-  ****************************************************************/
-  test_.setPrintDriver = setPrintDriver
-  test_.finish = finish
-  
-  print('TAP version GasT v0.1.1(BUGGY)')
-  
-  return test_
-  
-
-  /***************************************************************
-  *
-  * function implementions
-  *
-  ****************************************************************/
-
-  function print() {
-    var args = Array.prototype.slice.call(arguments)
-    
-    var message = Utilities.formatString.apply(null, args)
-    
-    printDriver(message)
-  }
-  
-  function tapOutput(ok, msg) {
-    print(
-      (ok ? 'ok' : 'not ok')
-      + ' ' + ++t.nIndex
-      + ' - ' + msg
-      + ' - ' + t.description
-    )
-  }
-  
-  function setPrintDriver(driverName) {
-    switch (true) {
-      case /Logger/i.test(driverName):
-        printDriver = function (msg) { return Logger.log(msg) }
-        break;
-      default:
-        throw Error('unsupported driverName: ' + driverName)
-    }
-    
-    return test_
-  }
-  
-  function ok(value, msg) {
-    if (value) {
-      this.nSucc++;
-      tapOutput(true, msg)
-    } else {
-      this.nFail++;
-      tapOutput(false, msg)
-    }
-  }
-
-  function notOk(value, msg) {
-    if (!value) {
-      this.nSucc++;
-      tapOutput(true, msg)
-    } else {
-      this.nFail++;
-      tapOutput(false, msg)
-    }
-  }
-
-  function equal(v1, v2, msg) {
-    if (v1 === v2) {
-      this.nSucc++;
-      tapOutput(true, msg)
-    } else {
-      this.nFail++;
-      var error = Utilities.formatString('%s not equal %s', v1, v2)
-      tapOutput(false, error + ' - ' + msg)
-    }
-  }
-
-  function notEqual(v1, v2, msg) {
-    if (v1 != v2) {
-      this.nSucc++;
-      tapOutput(true, msg)
-    } else {
-      this.nFail++;
-      var error = Utilities.formatString('%s equal %s', v1, v2)
-      tapOutput(false, error + ' - ' + msg)
-    }
-  }
-  
-  function throws(fn, msg) {
-    try {
-      fn()
+      , skip: skip
+      , pass: pass
+      , fail: fail
       
-      this.nFail++;
-      tapOutput(false, 'exception wanted - ' + msg)
-    } catch (e) {
-      this.nSucc++;
-      tapOutput(true, msg)
+      , reset: function () { 
+        this.succCounter = this.failCounter = this.skipCounter = 0
+        this.description = 'unknown'
+      }
+
     }
-  }
+    
+    // default output to gas logger.log
+    var printDriver = function (msg) { Logger.log(msg) }
+    
+    if (options && options.printer) {
+      var printDriver = options.printer;
+    }
+    
+    if (typeof printDriver != 'function') throw Error('options.printer must be a function to accept output parameter');
+    
+    print('TAP version GasTap v' + VERSION + '(BUGGY)')
   
-  function notThrow(fn, msg) {
-    try {
-      fn()
+    /***************************************************************
+    *
+    * Instance methods export 
+    *
+    ****************************************************************/
+    test.finish = finish
+  
+    
+    return test
+  
+
+    /***************************************************************
+    *
+    * Instance methods implementions
+    *
+    ****************************************************************/
+    function test(description, run) {  
+    
+      t.reset()
+
+      t.description = description  
       
-      this.nSucc++;
-      tapOutput(true, msg)
-    } catch (e) {
-      this.nFail++;
-      tapOutput(false, 'unexpected exception:' + e.message + ' - ' + msg)
+      try {
+      
+        run(t)
+      
+      } catch ( e ) {
+        //      Logger.log('caught exception: ' + e)
+        
+        SKIP_RE = new RegExp(EXCEPTION_SKIP)
+        PASS_RE = new RegExp(EXCEPTION_PASS)
+        FAIL_RE = new RegExp(EXCEPTION_FAIL)
+        
+        switch (true) {
+          case SKIP_RE.test(e):
+          case PASS_RE.test(e):
+          case FAIL_RE.test(e):
+            break;
+          default:
+            throw e
+        }      
+      } finally { 
+        totalSucc += t.succCounter
+        totalFail += t.failCounter
+        totalSkip += t.skipCounter
+        //      print('succCounter: %s, failCounter: %s, skipCounter: %s', t.succCounter, t.failCounter, t.skipCounter)
+      }
+    }
+    
+    function print() {
+      var args = Array.prototype.slice.call(arguments)
+      
+      var message = Utilities.formatString.apply(null, args)
+      printDriver(message)
+    }
+    
+    
+    function tapOutput(ok, msg) {
+      print(
+        (ok ? 'ok' : 'not ok')
+        + ' ' + ++t.counter
+        + ' - ' + msg
+        + ' - ' + t.description
+      )
+    }
+
+    
+    function finish () { 
+      var totalNum = totalSucc + totalFail + totalSkip
+      
+      //    print("%s, %s, %s, %s", totalSucc, totalFail, totalSkip, t.counter)
+      
+      if (totalNum != (t.counter)) {
+        throw Error('test counting error!')
+      }
+      
+      var msg = Utilities.formatString('1..%s', Math.floor(totalNum))
+      print(msg)
+      
+      msg = Utilities.formatString('%s tests, %s failures', Math.floor(totalNum), Math.floor(totalFail))
+      
+      if (totalSkip>0) {
+        msg += ', ' + Math.floor(totalSkip) + ' skipped'
+      }
+      
+      print(msg) 
+    }
+
+    /***************************************************************
+    *
+    * T 's functions
+    *
+    ****************************************************************/
+    
+    function ok(value, msg) {
+      if (value) {
+        this.succCounter++;
+        tapOutput(true, msg)
+      } else {
+        this.failCounter++;
+        tapOutput(false, msg)
+      }
+    }
+    
+    function notOk(value, msg) {
+      if (!value) {
+        this.succCounter++;
+        tapOutput(true, msg)
+      } else {
+        this.failCounter++;
+        tapOutput(false, msg)
+      }
+    }
+    
+    function equal(v1, v2, msg) {
+      if (v1 === v2) {
+        this.succCounter++;
+        tapOutput(true, msg)
+      } else {
+        this.failCounter++;
+        var error = Utilities.formatString('%s not equal %s', v1, v2)
+        tapOutput(false, error + ' - ' + msg)
+      }
+    }
+    
+    function notEqual(v1, v2, msg) {
+      if (v1 != v2) {
+        this.succCounter++;
+        tapOutput(true, msg)
+      } else {
+        this.failCounter++;
+        var error = Utilities.formatString('%s equal %s', v1, v2)
+        tapOutput(false, error + ' - ' + msg)
+      }
+    }
+    
+    function throws(fn, msg) {
+      try {
+        fn()
+        
+        this.failCounter++;
+        tapOutput(false, 'exception wanted - ' + msg)
+      } catch (e) {
+        this.succCounter++;
+        tapOutput(true, msg)
+      }
+    }
+    
+    function notThrow(fn, msg) {
+      try {
+        fn()
+        
+        this.succCounter++;
+        tapOutput(true, msg)
+      } catch (e) {
+        this.failCounter++;
+        tapOutput(false, 'unexpected exception:' + e.message + ' - ' + msg)
+      }
+    }
+    
+    function skip(msg) {
+      this.skipCounter++;
+      tapOutput(true, msg + ' # SKIP')
+      throw EXCEPTION_SKIP
+    }
+    
+    function pass(msg) {
+      this.succCounter++;
+      tapOutput(true, msg + ' # PASS')
+      throw EXCEPTION_PASS
+    }
+    
+    function fail(msg) {
+      this.failCounter++;
+      tapOutput(false, msg + ' # FAIL')
+      throw EXCEPTION_FAIL
     }
   }
+
   
-  function skip(msg) {
-    this.nSkip++;
-    tapOutput(true, msg + ' # SKIP')
-    throw EXCEPTION_SKIP
-  }
+  return GasTap
   
-  function pass(msg) {
-    this.nSucc++;
-    tapOutput(true, msg + ' # PASS')
-    throw EXCEPTION_PASS
-  }
-
-  function fail(msg) {
-    this.nFail++;
-    tapOutput(false, msg + ' # FAIL')
-    throw EXCEPTION_FAIL
-  }
-
-  function finish () { 
-    var totalNum = totalSucc + totalFail + totalSkip
-    
-//    print("%s, %s, %s, %s", totalSucc, totalFail, totalSkip, t.nIndex)
-
-    if (totalNum != (t.nIndex)) {
-      throw Error('test counting error!')
-    }
-    
-    var msg = Utilities.formatString('1..%s', Math.floor(totalNum))
-    print(msg)
-    
-    msg = Utilities.formatString('%s tests, %s failures', Math.floor(totalNum), Math.floor(totalFail))
-    
-    if (totalSkip>0) {
-      msg += ', ' + Math.floor(totalSkip) + ' skipped'
-    }
-    
-    print(msg) 
-  }
-
+  
 }())

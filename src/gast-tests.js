@@ -14,6 +14,14 @@
 * Author: Zhuohuan LI <zixia@zixia.net>
 * Date: 2015-11-05
 *
+* Example:
+```
+if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
+} // Class GasTap is ready for use now!
+
+var test = new GasTap()
+*
 */
 
 
@@ -27,10 +35,13 @@ function gast() {
   
   //////////////////////////////////////////////////////////////////////////////////////////
   ///// GasT include header start
-  var gastLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
-  var GasT = eval(UrlFetchApp.fetch(gastLib).getContentText())
+  if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+    eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
+  } // Class GasTap is ready for use now!
   
-  var test = GasT.setPrintDriver('Logger') 
+  var test = new GasTap({
+    printer: function (msg) { Logger.log(msg) }
+  })
   ///// GasT include header end
   //////////////////////////////////////////////////////////////////////////////////////////
   
