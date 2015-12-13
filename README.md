@@ -267,9 +267,8 @@ For real-world examples from open-source projects using GasT, see Projects Using
 
 ## Version history
 
-### 0.2.0 (December 10, 2015)
-* Get rid of global variable GasTap in library.
-* Must use eval to return a GasTap module object.
+### 0.2.0 (December 14, 2015)
+* Support output to spreadsheet (LogEnteries, etc). powered by GasLog modle.
 
 ### 0.1.0 (December 2, 2015)
 * Initial public release.
