@@ -268,7 +268,7 @@ For real-world examples from open-source projects using GasT, see Projects Using
 ## Version history
 
 ### [0.2.0 (December 14, 2015)](https://github.com/zixia/gast/tree/v0.2.0)
-* Support output to spreadsheet (LogEnteries, etc). powered by GasLog modle.
+* Support output to spreadsheet (LogEnteries, etc). powered by [GasLog](https://github.com/zixia/gasl) modle.
 
 Use v0.2.0 in GAS
 
