@@ -1,6 +1,6 @@
 # GasT - Google Apps Script Testing-framework
 
-GasT is a [TAP](http://testanything.org/)-compliant testing framework for Google Apps Script(GAS). It provides a simple way to verify that the GAS programs you write behave as expected.
+GasT is a [TAP](http://testanything.org/)-compliant testing framework for Google Apps Script(GAS). It provides a easy way to verify that the GAS programs you write behave as expected.
 
 Github: https://github.com/zixia/gast
 

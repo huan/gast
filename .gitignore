@@ -1,0 +1,6 @@
+.*.swp
+npm-debug.log
+node_modules
+secret.json
+gapps.config.json.bak
+t.js
