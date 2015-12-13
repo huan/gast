@@ -44,6 +44,9 @@ fileId=$(grep fileId "$GAPPS_CONFIG" | cut -d'"' -f4)
   exit 255
 }
 
+#
+# 
+#
 echo -n "Start pulling GAS script id: $fileId from ggoogle drive... "
 
 mv -f "$GAPPS_CONFIG" "${GAPPS_CONFIG}.bak"
@@ -51,5 +54,30 @@ mv -f "$GAPPS_CONFIG" "${GAPPS_CONFIG}.bak"
 cd "$BASE_DIR/.."
 $GAPPS_CMD clone $fileId
 
+#
+#
+#
 echo "Done."
+
+
+#
+# Remove .gitignore files in src
+#
+echo -n "Removing useless files in src directory... "
+path=$(grep path "$GAPPS_CONFIG" | cut -d'"' -f4)
+[ -n "$path" ] || {
+  echo "path not found!"
+  exit 255
+}
+
+for uselessFile in $( cat $BASE_DIR/../$path/.gitignore ); do
+  echo -n " $uselessFile "
+  rm -f $BASE_DIR/../$path/$uselessFile
+done
+
+echo "Done."
+
+
 echo
+
+

@@ -2,25 +2,20 @@
 /**
 *
 * GasT - Google Apps Script Testing-framework
-*
+* 
 * GasT is a TAP-compliant testing framework for Google Apps Script. 
 * It provides a simple way to verify that the GAS programs you write 
 * behave as expected.
 *
 * Github - https://github.com/zixia/gast
 * Test Anything Protocol - http://testanything.org/
-*
+* 
 * Issues: https://github.com/zixia/gast/issues
 * Author: Zhuohuan LI <zixia@zixia.net>
 * Date: 2015-11-05
 *
 */
 
-var gastLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
-var gastLibSource=UrlFetchApp.fetch(gastLib).getContentText()
-
-var GasTap = eval(gastLibSource)
-var test = GasTap.setPrintDriver('Logger')
 
 /**
 *
@@ -29,6 +24,17 @@ var test = GasTap.setPrintDriver('Logger')
 */
 function gast() {
   
+  
+  //////////////////////////////////////////////////////////////////////////////////////////
+  ///// GasT include header start
+  var gastLib='https://raw.githubusercontent.com/zixia/gast/master/gas-tap.js'
+  var GasT = eval(UrlFetchApp.fetch(gastLib).getContentText())
+  
+  var test = GasT.setPrintDriver('Logger') 
+  ///// GasT include header end
+  //////////////////////////////////////////////////////////////////////////////////////////
+  
+
   test('TAP ok', function (t) {
     t.ok(true, 'true is ok')
     t.notOk(false, 'false is not ok')
