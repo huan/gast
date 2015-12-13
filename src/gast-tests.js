@@ -50,6 +50,7 @@ function gast() {
   var sheetPrinter = new GasLog.Printer.Spreadsheet({
     url: 'https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0'
     , sheetName: 'GasTap'
+    , clear: true
   })
 
   var log = new GasLog({
