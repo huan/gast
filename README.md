@@ -267,8 +267,16 @@ For real-world examples from open-source projects using GasT, see Projects Using
 
 ## Version history
 
-### 0.2.0 (December 14, 2015)
+### [0.2.0 (December 14, 2015)](https://github.com/zixia/gast/tree/v0.2.0)
 * Support output to spreadsheet (LogEnteries, etc). powered by GasLog modle.
+
+Use v0.2.0 in GAS
+
+```javascript
+if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/v0.2.0/src/gas-tap-lib.js').getContentText())
+} // Class GasTap is ready for use now!
+```
 
 ### 0.1.0 (December 2, 2015)
 * Initial public release.
