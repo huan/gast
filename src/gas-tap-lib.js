@@ -17,13 +17,21 @@ var GasTap = (function () {
   * Author: Zhuohuan LI <zixia@zixia.net>
   * Date: 2015-11-05
   *
+  * Example:
+  ```javascript
+  if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+    eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
+  } // Class GasTap is ready for use now!
+
+  var test = new GasTap()
+  ```
   */
 
   var EXCEPTION_SKIP = 'GasTapSkip'
   var EXCEPTION_PASS = 'GasTapPass'
   var EXCEPTION_FAIL = 'GasTapFail'
   
-  var GasTap = function (options) {
+  var gasTap_ = function (options) {
     
     var totalSucc = 0
     var totalFail = 0
@@ -57,13 +65,13 @@ var GasTap = (function () {
     }
     
     // default output to gas logger.log
-    var printDriver = function (msg) { Logger.log(msg) }
+    var loggerFunc = function (msg) { Logger.log(msg) }
     
-    if (options && options.printer) {
-      var printDriver = options.printer;
+    if (options && options.logger) {
+      var loggerFunc = options.logger;
     }
     
-    if (typeof printDriver != 'function') throw Error('options.printer must be a function to accept output parameter');
+    if (typeof loggerFunc != 'function') throw Error('options.logger must be a function to accept output parameter');
     
     print('TAP version GasTap v' + VERSION + '(BUGGY)')
   
@@ -120,7 +128,7 @@ var GasTap = (function () {
       var args = Array.prototype.slice.call(arguments)
       
       var message = Utilities.formatString.apply(null, args)
-      printDriver(message)
+      loggerFunc(message)
     }
     
     
@@ -247,7 +255,7 @@ var GasTap = (function () {
   }
 
   
-  return GasTap
+  return gasTap_
   
   
 }())
