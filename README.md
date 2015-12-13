@@ -276,6 +276,7 @@ Use v0.2.0 in GAS
 /**
 *
 * GasT v0.2.0 Initialization. (only if not initialized yet.)
+* https://github.com/zixia/gast
 *
 */
 if ((typeof GasTap)==='undefined') { 
