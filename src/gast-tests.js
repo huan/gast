@@ -59,7 +59,7 @@ function gast() {
   })
 
   var test = new GasTap({
-    logger: log
+//    logger: log
   })
 
 

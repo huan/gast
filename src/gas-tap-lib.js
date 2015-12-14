@@ -31,7 +31,7 @@ var GasTap = (function () {
   var EXCEPTION_PASS = 'GasTapPass'
   var EXCEPTION_FAIL = 'GasTapFail'
   
-  var gasTap_ = function (options) {
+  var GasTap = function (options) {
     
     var totalSucc = 0
     var totalFail = 0
@@ -151,7 +151,9 @@ var GasTap = (function () {
         throw Error('test counting error!')
       }
       
-      var msg = Utilities.formatString('1..%s', Math.floor(totalNum))
+      var msg = Utilities.formatString('%s..%s'
+                                       , Math.floor(totalNum)>0 ? 1 : 0
+                                       , Math.floor(totalNum))
       print(msg)
       
       msg = Utilities.formatString('%s tests, %s failures', Math.floor(totalNum), Math.floor(totalFail))
@@ -255,7 +257,7 @@ var GasTap = (function () {
   }
 
   
-  return gasTap_
+  return GasTap
   
   
 }())
