@@ -50,6 +50,9 @@ var GasTap = (function () {
       , equal: equal
       , notEqual: notEqual
       
+      , deepEqual: deepEqual
+      , notDeepEqual: notDeepEqual
+      
       , throws: throws
       , notThrow: notThrow
       
@@ -209,6 +212,66 @@ var GasTap = (function () {
       } else {
         this.failCounter++;
         var error = Utilities.formatString('%s equal %s', v1, v2)
+        tapOutput(false, error + ' - ' + msg)
+      }
+    }
+
+    function deepEqual(v1, v2, msg) {
+      
+      var isDeepEqual = recursionDeepEqual(v1, v2)
+      
+      function recursionDeepEqual(rv1, rv2) {
+        if (!(rv1 instanceof Object) || !(rv2 instanceof Object)) return rv1 == rv2
+        
+        if (Object.keys(rv1).length != Object.keys(rv2).length) return false
+      
+        for (var k in rv1) {
+          if (!rv2[k] 
+              || ((typeof rv1[k]) != (typeof rv2[k]))
+          ) return false
+        
+          if (!recursionDeepEqual(rv1[k], rv2[k])) return false
+        }
+        
+        return true
+      }        
+        
+      if (isDeepEqual) {
+        this.succCounter++;
+        tapOutput(true, msg)
+      } else {
+        this.failCounter++;
+        var error = Utilities.formatString('%s not deepEqual %s', v1, v2)
+        tapOutput(false, error + ' - ' + msg)
+      }
+    }
+    
+    function notDeepEqual(v1, v2, msg) {
+      
+      var isNotDeepEqual = recursionNotDeepEqual(v1, v2)
+      
+      function recursionNotDeepEqual(rv1, rv2) {
+        if (!(rv1 instanceof Object) || !(rv2 instanceof Object)) return rv1 != rv2
+        
+        if (Object.keys(rv1).length != Object.keys(rv2).length) return true
+      
+        for (var k in rv1) {
+          if (!rv2[k] 
+              || ((typeof rv1[k]) != (typeof rv2[k]))
+          ) return true
+        
+          if (recursionNotDeepEqual(rv1[k], rv2[k])) return true
+        }
+        
+        return false
+      }
+      
+      if (isNotDeepEqual) {
+        this.succCounter++;
+        tapOutput(true, msg)
+      } else {
+        this.failCounter++;
+        var error = Utilities.formatString('%s notDeepEqual %s', v1, v2)
         tapOutput(false, error + ' - ' + msg)
       }
     }

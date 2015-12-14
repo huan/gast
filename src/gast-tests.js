@@ -76,6 +76,13 @@ function gast() {
   test('TAP equal', function (t) {    
     t.equal(true, true, 'true equal true')
     t.notEqual(true, false, 'true not equal false')
+    
+    var a = { x: 3, y: { a: 4, b: 5}, z: [5, 6] }
+    var a2 = { x: 3, y: { a: 4, b: 5}, z: [5, 6] }
+    var b = { a: [3, 4], b: 3, c: {a: 3} }
+    
+    t.deepEqual(a, a2, 'a deepEqual a2')
+    t.notDeepEqual(a, b, 'a notDeepEqual b')
   })
   
   test('TAP exception', function (t) {

@@ -87,6 +87,14 @@ Assert that `actual == expected` with an optional description `msg`.
 
 Assert that `actual != expected` with an optional description `msg`.
 
+### `t.deepEqual(actual, expected, msg)`
+
+Assert that actual and expected have the same structure and nested values with loose comparisons (==) on leaf nodes and an optional description msg.
+
+### `t.notEqual(actual, expected, msg)`
+
+Assert that actual and expected do not have the same structure and nested values with loose comparisons (==) on leaf nodes and an optional description msg.
+
 ### `t.throws(fn, msg)`
 
 Assert that the function call `fn()` throws an exception. 
