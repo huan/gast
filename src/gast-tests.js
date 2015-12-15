@@ -77,6 +77,8 @@ function gast() {
     t.equal(true, true, 'true equal true')
     t.notEqual(true, false, 'true not equal false')
     
+    t.equal(99, String(99), 'number 99 equal string "99"')
+    
     var a = { x: 3, y: { a: 4, b: 5}, z: [5, 6] }
     var a2 = { x: 3, y: { a: 4, b: 5}, z: [5, 6] }
     var b = { a: [3, 4], b: 3, c: {a: 3} }

@@ -195,7 +195,7 @@ var GasTap = (function () {
     }
     
     function equal(v1, v2, msg) {
-      if (v1 === v2) {
+      if (v1 == v2) {
         this.succCounter++;
         tapOutput(true, msg)
       } else {
