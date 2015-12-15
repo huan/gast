@@ -91,7 +91,7 @@ Assert that `actual != expected` with an optional description `msg`.
 
 Assert that actual and expected have the same structure and nested values with loose comparisons (==) on leaf nodes and an optional description msg.
 
-### `t.notEqual(actual, expected, msg)`
+### `t.notDeepEqual(actual, expected, msg)`
 
 Assert that actual and expected do not have the same structure and nested values with loose comparisons (==) on leaf nodes and an optional description msg.
 
