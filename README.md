@@ -275,7 +275,7 @@ For real-world examples from open-source projects using GasT, see Projects Using
 
 ## Version history
 
-### [0.2.0](https://github.com/zixia/gast/tree/v0.2.0) (December 14, 2015)
+### [v0.2.0](https://github.com/zixia/gast/tree/v0.2.0) (December 14, 2015)
 * Support output to spreadsheet (LogEnteries, etc). powered by [GasLog](https://github.com/zixia/gasl) modle.
 
 Use v0.2.0 in GAS
@@ -292,7 +292,7 @@ if ((typeof GasTap)==='undefined') {
 } // Class GasTap is ready for use now!
 ```
 
-### 0.1.0 (December 2, 2015)
+### v0.1.0 (December 2, 2015)
 * Initial public release.
 
 -------------------------------------------
