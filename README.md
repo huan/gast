@@ -13,7 +13,7 @@ if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initia
 
 var test = new GasTap()
 
-function gast() {
+function gastTestRunner() {
   test('do calculation right', function (t) {    
   	var i = 3 + 4
     t.equal(i, 7, 'calc 3 + 4 = 7 right')
@@ -190,10 +190,10 @@ if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initia
 var test = new GasTap()
 ```
 
-To use GasT, we need a wraper function(to run inside Script Editor). The following code is a start template, you can add more test in the gast() function, then run gast() to see the test result.
+To use GasT, we need a wraper function(to run inside Script Editor). The following code is a start template, you can add more test in the gastTestRunner() function, then run gastTestRunner() to see the test result.
 
 ```javascript
-function gast() {
+function gastTestRunner() {
   test('calculation', function (t) {
   	var i = 3 + 4
     t.equal(i, 7, 'calc 3 + 4 = 7 right')
