@@ -1,36 +1,21 @@
-'use strict'
-/**
-*
-* GasT - Google Apps Script Testing-framework
-* 
-* GasT is a TAP-compliant testing framework for Google Apps Script. 
-* It provides a simple way to verify that the GAS programs you write 
-* behave as expected.
-*
-* Github - https://github.com/zixia/gast
-* Test Anything Protocol - http://testanything.org/
-* 
-* Issues: https://github.com/zixia/gast/issues
-* Author: Zhuohuan LI <zixia@zixia.net>
-* Date: 2015-11-05
-*
-* Example:
-```
-if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
-  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
-} // Class GasTap is ready for use now!
-
-var test = new GasTap()
-*
-*/
-
-
 /**
 *
 * Put tests in me, then run me!
 *
 */
-function gast() {
+function gastTestRunner() {
+  'use strict'
+  /**
+  *
+  * GasT - Google Apps Script Testing-framework
+  * 
+  * GasT is a TAP-compliant testing framework for Google Apps Script. 
+  * It provides a simple way to verify that the GAS programs you write 
+  * behave as expected.
+  *
+  * Github - https://github.com/zixia/gast
+  *
+  */
   
   
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -43,29 +28,8 @@ function gast() {
   ///// GasT include header end
   //////////////////////////////////////////////////////////////////////////////////////////
   
-  if ((typeof GasLog)==='undefined') { // GasL Initialization. (only if not initialized yet.)
-    eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gasl/master/src/gas-log-lib.js').getContentText())
-  } // Class GasLog is ready for use now!
-
-  var sheetPrinter = new GasLog.Printer.Spreadsheet({
-    url: 'https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0'
-    , sheetName: 'GasTap'
-    , clear: true
-  })
-
-  var log = new GasLog({
-    printer: sheetPrinter
-    , ident: 'GasT'
-  })
-
-  var test = new GasTap({
-//    logger: log
-  })
-
-
-//  var test = new GasTap({
-//    printer: function (msg) { Logger.log(msg) }
-//  })
+  
+  var test = new GasTap()
   
 
   test('TAP ok', function (t) {

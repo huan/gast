@@ -1,2 +1,8 @@
 gasl-demo.js
 gas-log-lib.js
+debug.js
+gas-freshdesk-lib.js
+gas-freshdesk-tests.js
+gas-gmail-channel-lib.js
+gas-gmail-channel-tests.js
+polyfill.js
