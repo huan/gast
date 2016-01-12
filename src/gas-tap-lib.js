@@ -104,7 +104,7 @@ var GasTap = (function () {
       
         run(t)
       
-      } catch ( e ) {
+      } catch ( e /* if e instanceof String */) {
         //      Logger.log('caught exception: ' + e)
         
         SKIP_RE = new RegExp(EXCEPTION_SKIP)
@@ -117,6 +117,7 @@ var GasTap = (function () {
           case FAIL_RE.test(e):
             break;
           default:
+            if (e instanceof Error) Logger.log('Stack:\n' + e.stack)
             throw e
         }      
       } finally { 
