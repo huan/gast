@@ -182,10 +182,10 @@ An online version of google spreadsheet bounded with GasT google apps scripts ca
 
 There's two ways to load GasT library into your code:
 
-1. GasT project key: `ME7pXzfKF5_60_TNOSJ2ylCqMEWMB0UzS`  
-use it in script editor -> Resources -> Libraries... -> Find a Library -> Select.
-2. use eval below.  
+1. Use eval below(Recommended because it's the easist way to use GasT)  
 Zero setup, paste and run.
+1. GasT project key: `ME7pXzfKF5_60_TNOSJ2ylCqMEWMB0UzS`  
+Input it into script editor -> Resources -> Libraries... -> Find a Library, then click Select.
 
 Install GasT is very easy: simply copy/paste the following javascript code to your Code.gs file, then you are ready to use GasT.
 
@@ -284,7 +284,7 @@ For real-world examples from open-source projects using GasT, see Projects Using
 
 ### [v0.3.0](https://github.com/zixia/gast/tree/v0.3.0) (Feb 26, 2016)
 
-* Published with project key `ME7pXzfKF5_60_TNOSJ2ylCqMEWMB0UzS`(thanks @brucemcpherson for suggestion)
+* Published with project key `ME7pXzfKF5_60_TNOSJ2ylCqMEWMB0UzS`(thanks @[brucemcpherson](https://github.com/brucemcpherson) for suggestion)
 
 ### [v0.2.0](https://github.com/zixia/gast/tree/v0.2.0) (December 14, 2015)
 * Support output to spreadsheet (LogEnteries, etc). powered by [GasLog](https://github.com/zixia/gasl) modle.
