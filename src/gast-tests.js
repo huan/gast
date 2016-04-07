@@ -49,6 +49,9 @@ function gastTestRunner() {
     
     t.deepEqual(a, a2, 'a deepEqual a2')
     t.notDeepEqual(a, b, 'a notDeepEqual b')
+    
+    t.deepEqual([0], [0], '[0] deepEqual [0]')
+    t.notDeepEqual([0], [0], 'this should fail: [0] notDeepEqual [0]')
   })
   
   test('TAP exception', function (t) {

@@ -227,7 +227,7 @@ var GasTap = (function () {
         if (Object.keys(rv1).length != Object.keys(rv2).length) return false
       
         for (var k in rv1) {
-          if (!rv2[k] 
+          if (!(k in rv2)
               || ((typeof rv1[k]) != (typeof rv2[k]))
           ) return false
         
@@ -257,7 +257,7 @@ var GasTap = (function () {
         if (Object.keys(rv1).length != Object.keys(rv2).length) return true
       
         for (var k in rv1) {
-          if (!rv2[k] 
+          if (!(k in rv2)
               || ((typeof rv1[k]) != (typeof rv2[k]))
           ) return true
         
