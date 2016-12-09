@@ -9,7 +9,7 @@
   , "dependencies": {
   }
   , "devDependencies": {
-    "node-google-apps-script": "1.1.4"
+    "node-google-apps-script": "1.1.5"
   }
   , "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
