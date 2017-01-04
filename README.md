@@ -197,6 +197,21 @@ if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initia
 var test = new GasTap()
 ```
 
+Also you can decide to use the best practices from [developers.google.com](https://developers.google.com/apps-script/best_practices#use-the-cache-service). By caching data, you can reduce the number of times or frequency with which you have to fetch the data.
+
+```javascript
+if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+  var cs = CacheService.getScriptCache().get('gast');
+  if(!cs){
+    cs = UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText();
+    CacheService.getScriptCache().put('gast', cs, 21600);
+  }
+  eval(cs);
+} // Class GasTap is ready for use now!
+
+var test = new GasTap()
+```
+
 To use GasT, we need a wraper function(to run inside Script Editor). The following code is a simple template, you can add more test cases in the gastTestRunner() function, then run gastTestRunner() to see the test results.
 
 ```javascript
