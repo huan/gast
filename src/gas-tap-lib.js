@@ -152,6 +152,7 @@ var GasTap = (function () {
     /**
      * Prints a total line to log output. For an example "3 tests, 0 failures"
      * 
+     * @returns void
      */
     function finish () { 
       var totalNum = totalSucc + totalFail + totalSkip
