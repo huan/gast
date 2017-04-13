@@ -147,6 +147,25 @@ test('A test which should run', function (t) {
 })
 ```
 
+### `t.end`: Prints a total line to log output. For an example "3 tests, 0 failures"
+
+Total counts of the tests can be printed a total line after a test or after all.
+
+__Aliases__: final
+
+```
+Logs
+
+[17-04-13 17:04:15:788 MSK] TAP version GasTap v0.2.0(BUGGY)
+[17-04-13 17:04:16:381 MSK] ok 1 - ALL FINE! - getBase()
+[17-04-13 17:04:16:557 MSK] ok 2 -  - getActiveData()
+[17-04-13 17:04:16:562 MSK] 1..2
+[17-04-13 17:04:16:568 MSK] 2 tests, 0 failures           <= the end() result
+[17-04-13 17:04:19:820 MSK] ok 3 -  - getDestination
+[17-04-13 17:04:19:826 MSK] 1..3
+[17-04-13 17:04:19:831 MSK] 3 tests, 0 failures           <= the end() result
+```
+
 ## Running tests
 
 To run your tests, open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/zixia/gast/blob/master/src/gas-tests.js) into it, then click Run in menu, select function `gastTestRunner` . After click, you will get a message "Running function gast...". Wait until the message disapears, then click View in menu, select Logs. You will see the output like the following snapshot.

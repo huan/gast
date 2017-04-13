@@ -83,10 +83,10 @@ var GasTap = (function () {
     * Instance methods export 
     *
     ****************************************************************/
-    test.finish = finish
+    test.end = finish
     
-    // The alias to test.finish
-    test.end = test.finish
+    // The alias to test.end
+    test.finish = test.end
   
     
     return test
@@ -101,7 +101,7 @@ var GasTap = (function () {
     
       t.reset()
 
-      t.description = description  
+      t.description = description
       
       try {
       
@@ -149,6 +149,10 @@ var GasTap = (function () {
     }
 
     
+    /**
+     * Prints a total line to log output. For an example "3 tests, 0 failures"
+     * 
+     */
     function finish () { 
       var totalNum = totalSucc + totalFail + totalSkip
       
