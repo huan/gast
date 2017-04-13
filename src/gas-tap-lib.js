@@ -84,6 +84,9 @@ var GasTap = (function () {
     *
     ****************************************************************/
     test.finish = finish
+    
+    // The alias to test.finish
+    test.end = test.finish
   
     
     return test
