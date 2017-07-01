@@ -56,8 +56,8 @@ var GasTap = (function () {
       , throws: throws
       , notThrow: notThrow
 
-      , isNaN: isNaN
-      , notIsNaN: notIsNaN
+      , nan: nan
+      , notNan: notNan
       
       , skip: skip
       , pass: pass
@@ -288,7 +288,7 @@ var GasTap = (function () {
       }
     }
 
-    function isNaN(v1, msg) {
+    function nan(v1, msg) {
       if (v1 !== v1) {
         this.succCounter++;
         tapOutput(true, msg)
@@ -299,7 +299,7 @@ var GasTap = (function () {
       }
     }
 
-    function notIsNaN(v1, msg) {
+    function notNan(v1, msg) {
       if (!(v1 !== v1)) {
         this.succCounter++;
         tapOutput(true, msg)
