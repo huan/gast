@@ -52,6 +52,10 @@ function gastTestRunner() {
     
     t.deepEqual([0], [0], '[0] deepEqual [0]')
     t.notDeepEqual([0], [0], 'this should fail: [0] notDeepEqual [0]')
+
+    t.nan(NaN, 'NaN is NaN')
+    t.notNan({}, '{} not is NaN')
+
   })
   
   test('TAP exception', function (t) {

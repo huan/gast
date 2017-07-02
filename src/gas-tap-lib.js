@@ -55,6 +55,9 @@ var GasTap = (function () {
       
       , throws: throws
       , notThrow: notThrow
+
+      , nan: nan
+      , notNan: notNan
       
       , skip: skip
       , pass: pass
@@ -282,6 +285,28 @@ var GasTap = (function () {
         this.failCounter++;
         var error = Utilities.formatString('%s notDeepEqual %s', v1, v2)
         tapOutput(false, error + ' - ' + msg)
+      }
+    }
+
+    function nan(v1, msg) {
+      if (v1 !== v1) {
+        this.succCounter++;
+        tapOutput(true, msg)
+      } else {
+        this.failCounter++;
+        var error = Utilities.formatString('%s not is NaN', v1);
+        tapOutput(false, error + ' - ' + msg);
+      }
+    }
+
+    function notNan(v1, msg) {
+      if (!(v1 !== v1)) {
+        this.succCounter++;
+        tapOutput(true, msg)
+      } else {
+        this.failCounter++;
+        var error = Utilities.formatString('%s is NaN', v1);
+        tapOutput(false, error + ' - ' + msg);
       }
     }
     
