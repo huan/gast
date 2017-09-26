@@ -80,6 +80,20 @@ function gastTestRunner() {
     t.fail('this should fail')
   })
 
+
+  test('final Stats test', function (t) {
+    //GIVEN - this test suite 
+    var totalFailed = 2
+    var totalSucceed = 14
+    var totalSkipped = 1
+    
+    //WHEN - assuming test order maintenence
+    //THEN
+    t.equal(test.totalFailed(), totalFailed, "total failed value correct")
+    t.equal(test.totalSucceed(), totalSucceed, "total succeed value correct")
+    t.equal(test.totalSkipped(), totalSkipped, "total skiped value correct")
+  })
+
   test.finish()
 
 }

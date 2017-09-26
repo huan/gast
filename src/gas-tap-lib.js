@@ -90,7 +90,10 @@ var GasTap = (function () {
     
     // The alias to test.end
     test.finish = test.end
-  
+    
+    test.totalFailed= function() {return totalFail}
+    test.totalSucceed= function() {return totalSucc}
+    test.totalSkipped= function() {return totalSkip}
     
     return test
   
