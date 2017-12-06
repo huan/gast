@@ -166,6 +166,19 @@ Logs
 [17-04-13 17:04:19:831 MSK] 3 tests, 0 failures           <= the end() result
 ```
 
+### `t.totalFailed`, `t.totalSucceed`, `t.totalSkipped`: Checking test results
+
+Totals of failed, succeed and skipped test can be checked programaticaly.
+You will find this usefull if you wish to throw an exception in case of test failures.
+
+```javascript
+test.finish()
+if (test.totalFailed()>0) {
+  throw "Some test(s) failed!"
+}
+```
+
+
 ## Running tests
 
 To run your tests, open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/zixia/gast/blob/master/src/gas-tests.js) into it, then click Run in menu, select function `gastTestRunner` . After click, you will get a message "Running function gast...". Wait until the message disapears, then click View in menu, select Logs. You will see the output like the following snapshot.
