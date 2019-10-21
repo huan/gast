@@ -7,9 +7,7 @@
     "doc": "doc"
   },
   "dependencies": {},
-  "devDependencies": {
-    "node-google-apps-script": "1.1.4"
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pull": "scripts/pull.sh"
