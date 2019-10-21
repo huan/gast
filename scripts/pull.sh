@@ -52,7 +52,7 @@ echo -n "Start pulling GAS script id: $scriptId from google drive... "
 mv -f "$CLASP_CONFIG" "${CLASP_CONFIG}.bak"
 
 cd "$BASE_DIR/.."
-$CLASP_CMD
+$CLASP_CMD push
 
 #
 #
