@@ -320,6 +320,23 @@ var test = new GasTap({
 })
 ```
 
+## Adding the library to your project
+
+GasTap for Google Apps Script is made available as a script library. This is how you add it to your project:
+
+1. Select "Resources" > "Libraries..." in the Google Apps Script editor.
+2. Enter the project key (`1r5AqoOrzto3y7eqDmkhlNGXB-_6LCZM9AoS4AIp_eU-atwOchVVzOf1L`) in the "Find a Library" field, and choose "Select". (If you have copied the library, enter instead the project key of your copy.)
+3. Select the highest version number, and choose GasTap as the identifier. (Do not turn on Development Mode unless you know what you are doing. The development version may not work.)
+4. Press Save. You can now use the GasTap library in your code.
+
+## Loading the library
+
+To load GasTap:
+
+```js
+var test = GasTap.getInstance();
+```
+
 ## Support
 
 The GasT source code repository is hosted on GitHub. There you can file bugs on the issue tracker or submit tested pull requests for review. ( https://github.com/zixia/gast/issues )

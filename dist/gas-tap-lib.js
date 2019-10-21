@@ -3,7 +3,7 @@ var _class_ = undefined;
 /**
  * Loads GasTap
  * 
- * @return {void}
+ * @return {undefined}
  */
 function load() {
 var GasTap = (function () {
