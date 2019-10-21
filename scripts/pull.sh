@@ -24,7 +24,8 @@ GIT_STATUS=$( git status -s | wc -l )
 
 BASE_DIR=$(cd "$(dirname "$0")"; pwd)
 
-CLASP_CONFIG="$BASE_DIR/../.clasp.json"
+CLASP_CONFIG="$BASE_DIR/../config/.clasp.json"
+MANIFEST="$BASE_DIR/../config/appsscript.json"
 CLASP_CMD="$BASE_DIR/../node_modules/.bin/clasp"
 
 [ -e $CLASP_CONFIG ] || {
@@ -49,7 +50,10 @@ scriptId=$(grep scriptId "$CLASP_CONFIG" | cut -d'"' -f4)
 #
 echo -n "Start pulling GAS script id: $scriptId from google drive... "
 
-cp -f "$CLASP_CONFIG" "${CLASP_CONFIG}.bak"
+cp -f "$CLASP_CONFIG" "config/${CLASP_CONFIG}.bak"
+cp -f "$CLASP_CONFIG" "./"
+cp -f "$MANIFEST" "config/${MANIFEST}.bak"
+cp -f "$MANIFEST" "./dist/${MANIFEST}"
 
 cd "$BASE_DIR/.."
 $CLASP_CMD push
