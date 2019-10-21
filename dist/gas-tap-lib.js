@@ -1,5 +1,11 @@
 var _class_ = undefined;
-var load = function() {
+
+/**
+ * Loads GasTap
+ * 
+ * @return {void}
+ */
+function load() {
 var GasTap = (function () {
   'use strict'
 
@@ -356,8 +362,13 @@ var GasTap = (function () {
   
 }())
   _class_ = GasTap;
-};
- 
+}
+
+/**
+ * Returns a new GasTap instance
+ * 
+ * @return {object}
+ */
 function getInstance() {
   if (!_class_) load();
   return new _class_();
