@@ -10,6 +10,8 @@ GIT_STATUS=$(git status -s | wc -l)
 
 [ "$1" = "force" ] && GIT_STATUS=0
 
+[ "$2" = "tests" ] && PUSH_TESTS=1
+
 [ "$GIT_STATUS" -gt 0 ] && {
   git status
   echo
@@ -27,18 +29,10 @@ BASE_DIR=$(
   pwd
 )
 
-CLASP_CONFIG="$BASE_DIR/../config/.clasp.json"
-MANIFEST="$BASE_DIR/../config/appsscript.json"
-CLASP_CMD="$BASE_DIR/../node_modules/.bin/clasp"
+CLASP_CONFIG="$BASE_DIR/../.clasp.json"
 
 [ -e $CLASP_CONFIG ] || {
   echo "CLASP_CONFIG not found!"
-  exit 255
-}
-
-[ -e $CLASP_CMD ] || {
-  echo "CLASP_CMD not exist!"
-  echo "npm install first"
   exit 255
 }
 
@@ -55,40 +49,24 @@ echo -n "Start pulling GAS script id: $scriptId from google drive... "
 
 cd "$BASE_DIR/.."
 
+# Clear dist
 rm -rf "./dist"
 mkdir "./dist"
 
-cp -f "$CLASP_CONFIG" "${CLASP_CONFIG}.bak"
-cp -f "$CLASP_CONFIG" "./"
-cp -f "$MANIFEST" "${MANIFEST}.bak"
-cp -f "$MANIFEST" "./dist/"
+# Copy the manifest to dist
+cp -f ./src/appsscript.json ./dist
 
-# find ./src -type f \( -iname *.js -o -iname *.gs -o -iname *.html -o -iname *.ts \) -exec cp {} ./dist \;
+# Wrap and copy the source file to dist
 str="\/\*\* gas-tap-lib.js \*\*\/"
 sed -e "/$str/r ./src/gas-tap-lib.js" -e "/$str/d" ./src/wrapper.js >./dist/gas-tap-lib.js
 
-$CLASP_CMD push
+# Does it copy the tests file?
+[ "$PUSH_TESTS" = "1" ] && cp -f ./src/gast-tests.js ./dist
+
+# Push to the project
+npx clasp push
 
 #
 #
 #
 echo "Done."
-
-#
-# Remove .gitignore files in src
-#
-# echo -n "Removing useless files in src directory... "
-# path=$(grep rootDir "$CLASP_CONFIG" | cut -d'"' -f4)
-# [ -n "$path" ] || {
-#   echo "path not found!"
-#   exit 255
-# }
-
-# for uselessFile in $(cat $BASE_DIR/../$path/.gitignore); do
-#   echo -n " $uselessFile "
-#   rm -f $BASE_DIR/../$path/$uselessFile
-# done
-
-# echo "Done."
-
-# echo
