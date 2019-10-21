@@ -1,33 +1,32 @@
 {
-  "name": "GasT"
-  , "version": "0.1.0"
-  , "description": "GasT is a TAP-compliant testing framework for Google Apps Script(GAS). It provides a simple way to verify that the GAS programs you write behave as expected."
-  , "main": "index.js"
-  , "directories": {
+  "name": "GasT",
+  "version": "0.1.0",
+  "description": "GasT is a TAP-compliant testing framework for Google Apps Script(GAS). It provides a simple way to verify that the GAS programs you write behave as expected.",
+  "main": "index.js",
+  "directories": {
     "doc": "doc"
-  }
-  , "dependencies": {
-  }
-  , "devDependencies": {
+  },
+  "dependencies": {},
+  "devDependencies": {
     "node-google-apps-script": "1.1.4"
-  }
-  , "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    , "pull": "scripts/pull.sh"
-  }
-  , "repository": {
-    "type": "git"
-    , "url": "git@github.com:zixia/gast.git"
-  }
-  , "keywords": [
-    "test"
-    , "testing"
-    , "unit-testing"
-    , "gas"
-    , "tap"
-    , "test-anything-protocol"
-  ]
-  , "author": "Zhuohuan LI <zixia@zixia.net>"
-  , "license": "MIT"
-  , "homepage": "https://github.com/zixia/gast"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pull": "scripts/pull.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zixia/gast.git"
+  },
+  "keywords": [
+    "test",
+    "testing",
+    "unit-testing",
+    "gas",
+    "tap",
+    "test-anything-protocol"
+  ],
+  "author": "Zhuohuan LI <zixia@zixia.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/zixia/gast"
 }
