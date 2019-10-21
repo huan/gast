@@ -24,35 +24,35 @@ GIT_STATUS=$( git status -s | wc -l )
 
 BASE_DIR=$(cd "$(dirname "$0")"; pwd)
 
-GAPPS_CONFIG="$BASE_DIR/../gapps.config.json"
-GAPPS_CMD="$BASE_DIR/../node_modules/.bin/gapps"
+CLASP_CONFIG="$BASE_DIR/../.clasp.json"
+CLASP_CMD="$BASE_DIR/../node_modules/.bin/clasp"
 
-[ -e $GAPPS_CONFIG ] || {
-  echo "GAPPS_CONFIG not found!"
+[ -e $CLASP_CONFIG ] || {
+  echo "CLASP_CONFIG not found!"
   exit 255
 }
 
-[ -e $GAPPS_CMD ] || {
-  echo "GAPPS_CMD not exist!"
+[ -e $CLASP_CMD ] || {
+  echo "CLASP_CMD not exist!"
   echo "npm install first"
   exit 255
 }
 
-fileId=$(grep fileId "$GAPPS_CONFIG" | cut -d'"' -f4)
-[ -n "$fileId" ] || {
-  echo "fileId not found!"
+scriptId=$(grep scriptId "$CLASP_CONFIG" | cut -d'"' -f4)
+[ -n "$scriptId" ] || {
+  echo "scriptId not found!"
   exit 255
 }
 
 #
 # 
 #
-echo -n "Start pulling GAS script id: $fileId from ggoogle drive... "
+echo -n "Start pulling GAS script id: $scriptId from google drive... "
 
-mv -f "$GAPPS_CONFIG" "${GAPPS_CONFIG}.bak"
+mv -f "$CLASP_CONFIG" "${CLASP_CONFIG}.bak"
 
 cd "$BASE_DIR/.."
-$GAPPS_CMD clone $fileId
+$CLASP_CMD
 
 #
 #
@@ -64,7 +64,7 @@ echo "Done."
 # Remove .gitignore files in src
 #
 echo -n "Removing useless files in src directory... "
-path=$(grep path "$GAPPS_CONFIG" | cut -d'"' -f4)
+path=$(grep path "$CLASP_CONFIG" | cut -d'"' -f4)
 [ -n "$path" ] || {
   echo "path not found!"
   exit 255
