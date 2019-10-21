@@ -2,6 +2,6 @@
 npm-debug.log
 node_modules
 secret.json
-gapps.config.json.bak
+*.bak
 t.js
 scripts/pull.sh
