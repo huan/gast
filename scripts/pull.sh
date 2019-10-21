@@ -49,7 +49,7 @@ scriptId=$(grep scriptId "$CLASP_CONFIG" | cut -d'"' -f4)
 #
 echo -n "Start pulling GAS script id: $scriptId from google drive... "
 
-mv -f "$CLASP_CONFIG" "${CLASP_CONFIG}.bak"
+cp -f "$CLASP_CONFIG" "${CLASP_CONFIG}.bak"
 
 cd "$BASE_DIR/.."
 $CLASP_CMD push
