@@ -4,4 +4,3 @@ node_modules
 secret.json
 *.bak
 t.js
-scripts/pull.sh
