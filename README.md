@@ -2,13 +2,13 @@
 
 GasT is a [TAP](http://testanything.org/)-compatable testing framework for Google Apps Script (GAS). It provides an easy way to verify whether GAS programs you write is behaving as expected or not.
 
-Github: https://github.com/zixia/gast
+Github: https://github.com/huan/gast
 
 A GasT unit test file is a javascript which defines GAS unit testing cases. Behind the scenes, each GAS test case is simply a function that takes a description parameter, and outputs in TAP format.
 
 ```javascript
 if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
-  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText())
 } // Class GasTap is ready for use now!
 
 var test = new GasTap()
@@ -59,7 +59,7 @@ TAP Specification 13: http://testanything.org/tap-version-13-specification.html
 
 ## Writing tests
 
-There's a very simple example at https://github.com/zixia/gast/blob/master/src/gas-tests.js, which is the test suite of GasT itself.
+There's a very simple example at https://github.com/huan/gast/blob/master/src/gas-tests.js, which is the test suite of GasT itself.
 
 ### `test(msg, cb)`: Create sub test
 
@@ -181,7 +181,7 @@ if (test.totalFailed()>0) {
 
 ## Running tests
 
-To run your tests, open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/zixia/gast/blob/master/src/gas-tests.js) into it, then click Run in menu, select function `gastTestRunner` . After click, you will get a message "Running function gast...". Wait until the message disapears, then click View in menu, select Logs. You will see the output like the following snapshot.
+To run your tests, open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/huan/gast/blob/master/src/gas-tests.js) into it, then click Run in menu, select function `gastTestRunner` . After click, you will get a message "Running function gast...". Wait until the message disapears, then click View in menu, select Logs. You will see the output like the following snapshot.
 
 If GasT uses the default printDriver Logger, it will print message in Google Apps Script Logger.log(). If GasT is not run inside google apps script, in other words, if you run it from a continuous integration system, you can use other printDriver like ```ConsoleLog```(currenlty not supported), it will output in machine-parsable TAP format.
 
@@ -204,7 +204,8 @@ not ok 10 - this should fail # FAIL - TAP fail
 ```
 
 ### Screen Snapshoot
-![Test Anything Protocol(TAP) for Google Apps Script](https://raw.githubusercontent.com/zixia/gast/master/gast-script-editor-screenshot.png)
+
+![Test Anything Protocol(TAP) for Google Apps Script](https://raw.githubusercontent.com/huan/gast/master/gast-script-editor-screenshot.png)
 
 An online version of google spreadsheet bounded with GasT google apps scripts can be found here: 
 * Spreadsheet - https://docs.google.com/spreadsheets/d/19M2DY3hunU6tDQFX5buJmZ_f3E8VFmlqAtodyC-J8Ag/edit#gid=323390886
@@ -223,7 +224,7 @@ Install GasT is very easy: simply copy/paste the following javascript code to yo
 
 ```javascript
 if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
-  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText())
 } // Class GasTap is ready for use now!
 
 var test = new GasTap()
@@ -235,7 +236,7 @@ Also you can decide to use the best practices from [developers.google.com](https
 if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
   var cs = CacheService.getScriptCache().get('gast');
   if(!cs){
-    cs = UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText();
+    cs = UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText();
     CacheService.getScriptCache().put('gast', cs, 21600);
   }
   eval(cs);
@@ -278,7 +279,7 @@ var test = new GasTap({
 
 Above is the default setting of GasTap. You can modify the printer function based on your requirement, as long as the function accepts the same parameter.
 
-The following example sets GasTap to output test tap results to a google spreadsheet using a log library writen by me: [GasL](https://github.com/zixia/gasl) (GasL is a unix syslog like logging framework for Google Apps Script(GAS). It provides easy way for the GAS programs to log messages to Spreadsheet, LogEntries, RESTFUL API and Logger of GAS.)
+The following example sets GasTap to output test tap results to a google spreadsheet using a log library writen by me: [GasL](https://github.com/huan/gasl) (GasL is a unix syslog like logging framework for Google Apps Script(GAS). It provides easy way for the GAS programs to log messages to Spreadsheet, LogEntries, RESTFUL API and Logger of GAS.)
 
 ```javascript
 /**
@@ -287,11 +288,11 @@ The following example sets GasTap to output test tap results to a google spreads
 *
 */
 if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
-  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText())
 } // Class GasTap is ready for use now!
 
 if ((typeof GasLog)==='undefined') { // GasL Initialization. (only if not initialized yet.)
-  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gasl/master/src/gas-log-lib.js').getContentText())
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gasl/master/src/gas-log-lib.js').getContentText())
 } // Class GasLog is ready for use now!
 
 /**
@@ -322,19 +323,19 @@ var test = new GasTap({
 
 ## Support
 
-The GasT source code repository is hosted on GitHub. There you can file bugs on the issue tracker or submit tested pull requests for review. ( https://github.com/zixia/gast/issues )
+The GasT source code repository is hosted on GitHub. There you can file bugs on the issue tracker or submit tested pull requests for review. ( https://github.com/huan/gast/issues )
 
-For real-world examples from open-source projects using GasT, see Projects Using TasT on the wiki. ( https://github.com/zixia/gast/wiki )
+For real-world examples from open-source projects using GasT, see Projects Using TasT on the wiki. ( https://github.com/huan/gast/wiki )
 
 
 ## Version history
 
-### [v0.3.0](https://github.com/zixia/gast/tree/v0.3.0) (Feb 26, 2016)
+### [v0.3.0](https://github.com/huan/gast/tree/v0.3.0) (Feb 26, 2016)
 
 * Published with project key `ME7pXzfKF5_60_TNOSJ2ylCqMEWMB0UzS`(thanks @[brucemcpherson](https://github.com/brucemcpherson) for suggestion)
 
-### [v0.2.0](https://github.com/zixia/gast/tree/v0.2.0) (December 14, 2015)
-* Support output to spreadsheet (LogEnteries, etc). powered by [GasLog](https://github.com/zixia/gasl) modle.
+### [v0.2.0](https://github.com/huan/gast/tree/v0.2.0) (December 14, 2015)
+* Support output to spreadsheet (LogEnteries, etc). powered by [GasLog](https://github.com/huan/gasl) modle.
 
 Use v0.2.0 in GAS
 
@@ -342,11 +343,11 @@ Use v0.2.0 in GAS
 /**
 *
 * GasT v0.2.0 Initialization. (only if not initialized yet.)
-* https://github.com/zixia/gast
+* https://github.com/huan/gast
 *
 */
 if ((typeof GasTap)==='undefined') { 
-  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/v0.2.0/src/gas-tap-lib.js').getContentText())
+  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/v0.2.0/src/gas-tap-lib.js').getContentText())
 } // Class GasTap is ready for use now!
 ```
 
