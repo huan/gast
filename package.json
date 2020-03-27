@@ -1,5 +1,5 @@
 {
-  "name": "GasT"
+  "name": "gast"
   , "version": "0.1.0"
   , "description": "GasT is a TAP-compliant testing framework for Google Apps Script(GAS). It provides a simple way to verify that the GAS programs you write behave as expected."
   , "main": "index.js"
@@ -17,7 +17,7 @@
   }
   , "repository": {
     "type": "git"
-    , "url": "git@github.com:zixia/gast.git"
+    , "url": "git@github.com:huan/gast.git"
   }
   , "keywords": [
     "test"
@@ -29,5 +29,5 @@
   ]
   , "author": "Zhuohuan LI <zixia@zixia.net>"
   , "license": "MIT"
-  , "homepage": "https://github.com/zixia/gast"
+  , "homepage": "https://github.com/huan/gast"
 }

@@ -13,7 +13,7 @@ function gastTestRunner() {
   * It provides a simple way to verify that the GAS programs you write 
   * behave as expected.
   *
-  * Github - https://github.com/zixia/gast
+  * Github - https://github.com/huan/gast
   *
   */
   
@@ -22,7 +22,7 @@ function gastTestRunner() {
   ///// GasT include header start
   
   if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
-    eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
+    eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText())
   } // Class GasTap is ready for use now!
   
   ///// GasT include header end
