@@ -291,10 +291,6 @@ if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initia
   eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText())
 } // Class GasTap is ready for use now!
 
-if ((typeof GasLog)==='undefined') { // GasL Initialization. (only if not initialized yet.)
-  eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gasl/master/src/gas-log-lib.js').getContentText())
-} // Class GasLog is ready for use now!
-
 /**
 *
 * Create a log function that writes to google spreadsheet
