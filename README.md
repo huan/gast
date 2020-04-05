@@ -352,7 +352,7 @@ if ((typeof GasTap)==='undefined') {
 
 ## Links
 
-- [How to perform Google Add-on automated unit testing](https://medium.com/effilab/how-to-perform-google-add-on-automated-unit-testing-and-publishing-with-circle-ci-part-2-636c7589350e) Thanks [@rubenflamshepherd](https://github.com/rubenflamshepherd) for letting me know this great article from [#23](https://github.com/huan/gast/pull/23#issuecomment-608947524)
+- [How to perform Google Add-on automated unit testing](https://medium.com/effilab/how-to-perform-google-add-on-automated-unit-testing-and-publishing-with-circle-ci-part-2-636c7589350e) (Recommended by [@rubenflamshepherd](https://github.com/rubenflamshepherd) in [#23](https://github.com/huan/gast/pull/23#issuecomment-608947524))
 
 ## Author
 
