@@ -350,5 +350,18 @@ if ((typeof GasTap)==='undefined') {
 ### v0.1.0 (December 2, 2015)
 * Initial public release.
 
--------------------------------------------
-© 2015 Zhuohuan LI. GasT is released under an MIT-style license; see LICENSE for details.
+## Links
+
+- [How to perform Google Add-on automated unit testing](https://medium.com/effilab/how-to-perform-google-add-on-automated-unit-testing-and-publishing-with-circle-ci-part-2-636c7589350e) Thanks [@rubenflamshepherd](https://github.com/rubenflamshepherd) for letting me know this great article from [#23](https://github.com/huan/gast/pull/23#issuecomment-608947524)
+
+## Author
+
+[Huan LI](https://github.com/huan) ([李卓桓](http://linkedin.com/in/zixia)) zixia@zixia.net
+
+[![Profile of Huan LI (李卓桓) on StackOverflow](https://stackexchange.com/users/flair/265499.png)](https://stackexchange.com/users/265499)
+
+## Copyright & License
+
+* Code & Docs © 2015-now Huan LI \<zixia@zixia.net\>
+* Code released under the MIT License
+* Docs released under Creative Commons
