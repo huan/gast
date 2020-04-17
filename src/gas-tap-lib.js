@@ -10,13 +10,21 @@ var GasTap = (function () {
   * It provides a simple way to verify that the GAS programs you write 
   * behave as expected.
   *
-  * Github - https://github.com/zixia/gast
+  * Github - https://github.com/huan/gast
   * Test Anything Protocol - http://testanything.org/
   *
-  * Issues: https://github.com/zixia/gast/issues
-  * Author: Zhuohuan LI <zixia@zixia.net>
+  * Issues: https://github.com/huan/gast/issues
+  * Author: Huan LI <zixia@zixia.net>
   * Date: 2015-11-05
   *
+  * Example:
+  ```javascript
+  if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+    eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText())
+  } // Class GasTap is ready for use now!
+
+  var test = new GasTap()
+  ```
   */
 
   var EXCEPTION_SKIP = 'GasTapSkip'

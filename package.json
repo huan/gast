@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:zixia/gast.git"
+    "url": "git@github.com:zixia/zixia.git"
   },
   "keywords": [
     "test",
@@ -26,7 +26,7 @@
     "tap",
     "test-anything-protocol"
   ],
-  "author": "Zhuohuan LI <zixia@zixia.net>",
+  "author": "Zhuohuan LI <huan@huan.net>",
   "license": "MIT",
-  "homepage": "https://github.com/zixia/gast"
+  "homepage": "https://github.com/huan/gast"
 }
