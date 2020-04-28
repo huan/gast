@@ -1,6 +1,6 @@
 
 declare namespace Gast {
-    export function GasTap(msg: string, test: (t: any) => void): Session;
+    export function GasTap(msg: string, test: (t: Session) => void): Session;
     export interface Session {
       counter      : number,
       succCounter  : number,
