@@ -354,6 +354,17 @@ if ((typeof GasTap)==='undefined') {
 
 - [How to perform Google Add-on automated unit testing](https://medium.com/effilab/how-to-perform-google-add-on-automated-unit-testing-and-publishing-with-circle-ci-part-2-636c7589350e) (Recommended by [@rubenflamshepherd](https://github.com/rubenflamshepherd) in [#23](https://github.com/huan/gast/pull/23#issuecomment-608947524))
 
+## Contributors
+
+[![contributor](https://sourcerer.io/fame/huan/huan/gast/images/0)](https://sourcerer.io/fame/huan/huan/gast/links/0)
+[![contributor](https://sourcerer.io/fame/huan/huan/gast/images/1)](https://sourcerer.io/fame/huan/huan/gast/links/1)
+[![contributor](https://sourcerer.io/fame/huan/huan/gast/images/2)](https://sourcerer.io/fame/huan/huan/gast/links/2)
+[![contributor](https://sourcerer.io/fame/huan/huan/gast/images/3)](https://sourcerer.io/fame/huan/huan/gast/links/3
+)[!contributor[](https://sourcerer.io/fame/huan/huan/gast/images/4)](https://sourcerer.io/fame/huan/huan/gast/links/4)
+[![contributor](https://sourcerer.io/fame/huan/huan/gast/images/5)](https://sourcerer.io/fame/huan/huan/gast/links/5)
+[![contributor](https://sourcerer.io/fame/huan/huan/gast/images/6)](https://sourcerer.io/fame/huan/huan/gast/links/6)
+[![contributor](https://sourcerer.io/fame/huan/huan/gast/images/7)](https://sourcerer.io/fame/huan/huan/gast/links/7)
+
 ## Author
 
 [Huan LI](https://github.com/huan) ([李卓桓](http://linkedin.com/in/zixia)) zixia@zixia.net
