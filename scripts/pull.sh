@@ -6,9 +6,11 @@
 #
 #
 
-GIT_STATUS=$( git status -s | wc -l )
+GIT_STATUS=$(git status -s | wc -l)
 
 [ "$1" = "force" ] && GIT_STATUS=0
+
+[ "$2" = "tests" ] && PUSH_TESTS=1
 
 [ "$GIT_STATUS" -gt 0 ] && {
   git status
@@ -19,65 +21,52 @@ GIT_STATUS=$( git status -s | wc -l )
   echo
   echo "run 'git commit -a' to fix it. (also suggest to run a 'git push' after that)"
   echo
-  exit 
+  exit
 }
 
-BASE_DIR=$(cd "$(dirname "$0")"; pwd)
+BASE_DIR=$(
+  cd "$(dirname "$0")"
+  pwd
+)
 
-GAPPS_CONFIG="$BASE_DIR/../gapps.config.json"
-GAPPS_CMD="$BASE_DIR/../node_modules/.bin/gapps"
+CLASP_CONFIG="$BASE_DIR/../.clasp.json"
 
-[ -e $GAPPS_CONFIG ] || {
-  echo "GAPPS_CONFIG not found!"
+[ -e $CLASP_CONFIG ] || {
+  echo "CLASP_CONFIG not found!"
   exit 255
 }
 
-[ -e $GAPPS_CMD ] || {
-  echo "GAPPS_CMD not exist!"
-  echo "npm install first"
-  exit 255
-}
-
-fileId=$(grep fileId "$GAPPS_CONFIG" | cut -d'"' -f4)
-[ -n "$fileId" ] || {
-  echo "fileId not found!"
+scriptId=$(grep scriptId "$CLASP_CONFIG" | cut -d'"' -f4)
+[ -n "$scriptId" ] || {
+  echo "scriptId not found!"
   exit 255
 }
 
 #
-# 
 #
-echo -n "Start pulling GAS script id: $fileId from ggoogle drive... "
-
-mv -f "$GAPPS_CONFIG" "${GAPPS_CONFIG}.bak"
+#
+echo -n "Start pulling GAS script id: $scriptId from google drive... "
 
 cd "$BASE_DIR/.."
-$GAPPS_CMD clone $fileId
+
+# Clear dist
+rm -rf "./dist"
+mkdir "./dist"
+
+# Copy the manifest to dist
+cp -f ./src/appsscript.json ./dist
+
+# Wrap and copy the source file to dist
+str="\/\*\* gas-tap-lib.js \*\*\/"
+sed -e "/$str/r ./src/gas-tap-lib.js" -e "/$str/d" ./src/wrapper.js >./dist/gas-tap-lib.js
+
+# Does it copy the tests file?
+[ "$PUSH_TESTS" = "1" ] && cp -f ./src/gast-tests.js ./dist
+
+# Push to the project
+npx clasp push
 
 #
 #
 #
 echo "Done."
-
-
-#
-# Remove .gitignore files in src
-#
-echo -n "Removing useless files in src directory... "
-path=$(grep path "$GAPPS_CONFIG" | cut -d'"' -f4)
-[ -n "$path" ] || {
-  echo "path not found!"
-  exit 255
-}
-
-for uselessFile in $( cat $BASE_DIR/../$path/.gitignore ); do
-  echo -n " $uselessFile "
-  rm -f $BASE_DIR/../$path/$uselessFile
-done
-
-echo "Done."
-
-
-echo
-
-

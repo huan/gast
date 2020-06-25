@@ -11,31 +11,33 @@ if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initia
   eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText())
 } // Class GasTap is ready for use now!
 
-var test = new GasTap()
+var test = new GasTap();
 
 function gastTestRunner() {
-  test('do calculation right', function (t) {    
-  	var i = 3 + 4
-    t.equal(i, 7, 'calc 3 + 4 = 7 right')
-  })
+  test('do calculation right', function(t) {
+    var i = 3 + 4;
+    t.equal(i, 7, 'calc 3 + 4 = 7 right');
+  });
 
-  test('Spreadsheet exist', function (t) {
-    var url = 'https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0'
-	  var ss = SpreadsheetApp.openByUrl(url)
-    t.ok(ss, 'open spreadsheet successful')
-  })
+  test('Spreadsheet exist', function(t) {
+    var url =
+      'https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0';
+    var ss = SpreadsheetApp.openByUrl(url);
+    t.ok(ss, 'open spreadsheet successful');
+  });
 
-  test.finish()
+  test.finish();
 }
 ```
 
 GasT is most useful when testing javascript in Google Apps Script environment. if you are running outside of GAS environment, there are other TAP testing frameworks available, such as [TAPE - a tap-producing test harness for node and browsers](https://github.com/substack/tape).
 
-Test cases consist of Google Apps Scripts. 
+Test cases consist of Google Apps Scripts.
 
 ## About TAP
 
 TAP is Test Anything Protocol, as understood by Perl 1.0's t/TEST on year 1988.
+
 ```
 commit 840163baa12f7970131f7841c479bccf5be40ba9
 Author: Larry Wall <lwall@jpl-devvax.jpl.nasa.gov>
@@ -43,6 +45,7 @@ Date:   Sat Jan 30 23:00:00 1988 +0000
 ```
 
 Version 2 implemented in year 1996.
+
 ```
 commit 4bce96efdcaa480e392138e10166c92c5fc5f22c
 Author: Perl 5 Porters <perl5-porters@africa.nicoh.com>
@@ -56,7 +59,6 @@ Today, TAP is widely supported as a unit testing framework by test harness and a
 TAP Specification: http://testanything.org/tap-specification.html  
 TAP Specification 13: http://testanything.org/tap-version-13-specification.html
 
-
 ## Writing tests
 
 There's a very simple example at https://github.com/huan/gast/blob/master/src/gas-tests.js, which is the test suite of GasT itself.
@@ -66,9 +68,9 @@ There's a very simple example at https://github.com/huan/gast/blob/master/src/ga
 Create a new test with a description. cb(t) fires with the new test object t once all preceeding tests have finished.
 
 ```javascript
-  test('I am a test', function (t) {
-    t.ok(true, 'true is ok')
-  })
+test('I am a test', function(t) {
+  t.ok(true, 'true is ok');
+});
 ```
 
 ### `t.ok(value, msg)`
@@ -97,7 +99,7 @@ Assert that `actual` and `expected` do not have the same structure and nested va
 
 ### `t.throws(fn, msg)`
 
-Assert that function call `fn()` throws an exception. 
+Assert that function call `fn()` throws an exception.
 
 ### `t.notThrow(fn, msg)`
 
@@ -115,43 +117,42 @@ Generate a failing assertion with a message `msg`.
 
 Tests can be skipped by using the t.skip function at the point in a test you wish to skip.
 
-
 ```javascript
-test('A test I do not want to execute for now', function (t) {  
-  t.skip()
-  var ret = foo()
-  t.ok(ret)
-})
+test('A test I do not want to execute for now', function(t) {
+  t.skip();
+  var ret = foo();
+  t.ok(ret);
+});
 ```
 
 Optionally, you may include a reason for skipping:
 
 ```javascript
-test('A test I do not want to execute for now', function (t) {  
-  t.skip('This function will return true soon, but not now')
-  var ret = foo()
-  t.ok(ret)
-})
+test('A test I do not want to execute for now', function(t) {
+  t.skip('This function will return true soon, but not now');
+  var ret = foo();
+  t.ok(ret);
+});
 ```
 
 Or you can skip conditionally:
 
 ```javascript
-test('A test which should run', function (t) {  
+test('A test which should run', function(t) {
   if (foo != bar) {
-    t.skip('foo is not bar')
+    t.skip('foo is not bar');
   }
 
-  var ret = foo()
-  t.ok(ret)
-})
+  var ret = foo();
+  t.ok(ret);
+});
 ```
 
 ### `t.end`: Prints a total line to log output. For an example "3 tests, 0 failures"
 
 Total counts of the tests can be printed a total line after a test or after all.
 
-__Aliases__: final
+**Aliases**: final
 
 ```
 Logs
@@ -172,18 +173,17 @@ Totals of failed, succeed and skipped test can be checked programaticaly.
 You will find this usefull if you wish to throw an exception in case of test failures.
 
 ```javascript
-test.finish()
-if (test.totalFailed()>0) {
-  throw "Some test(s) failed!"
+test.finish();
+if (test.totalFailed() > 0) {
+  throw 'Some test(s) failed!';
 }
 ```
-
 
 ## Running tests
 
 To run your tests, open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/huan/gast/blob/master/src/gas-tests.js) into it, then click Run in menu, select function `gastTestRunner` . After click, you will get a message "Running function gast...". Wait until the message disapears, then click View in menu, select Logs. You will see the output like the following snapshot.
 
-If GasT uses the default printDriver Logger, it will print message in Google Apps Script Logger.log(). If GasT is not run inside google apps script, in other words, if you run it from a continuous integration system, you can use other printDriver like ```ConsoleLog```(currenlty not supported), it will output in machine-parsable TAP format.
+If GasT uses the default printDriver Logger, it will print message in Google Apps Script Logger.log(). If GasT is not run inside google apps script, in other words, if you run it from a continuous integration system, you can use other printDriver like `ConsoleLog`(currenlty not supported), it will output in machine-parsable TAP format.
 
 GasT always uses TAP format output(it's buggy now, more fix needed).
 
@@ -207,18 +207,19 @@ not ok 10 - this should fail # FAIL - TAP fail
 
 ![Test Anything Protocol(TAP) for Google Apps Script](https://raw.githubusercontent.com/huan/gast/master/gast-script-editor-screenshot.png)
 
-An online version of google spreadsheet bounded with GasT google apps scripts can be found here: 
-* Spreadsheet - https://docs.google.com/spreadsheets/d/19M2DY3hunU6tDQFX5buJmZ_f3E8VFmlqAtodyC-J8Ag/edit#gid=323390886
-* Script editor - https://script.google.com/a/zixia.net/macros/d/Mta4oea1VMIugfSGRo4QrAnKRT9d30hqB/edit?uiv=2&mid=ACjPJvGt4gnXjJwXnToB0jIMEbSvqKUF6vH-uq-m59SqnjXqTQ03NDn_khlNE6ha_mPnrOAYEnyFk80nHYmt_hppO3AgDkO_vVLrYJXzcPPagwRromd0znfLreNFAu4p0rYTC-Jlo-sAKOM
+An online version of google spreadsheet bounded with GasT google apps scripts can be found here:
+
+- Spreadsheet - https://docs.google.com/spreadsheets/d/19M2DY3hunU6tDQFX5buJmZ_f3E8VFmlqAtodyC-J8Ag/edit#gid=323390886
+- Script editor - https://script.google.com/a/zixia.net/macros/d/Mta4oea1VMIugfSGRo4QrAnKRT9d30hqB/edit?uiv=2&mid=ACjPJvGt4gnXjJwXnToB0jIMEbSvqKUF6vH-uq-m59SqnjXqTQ03NDn_khlNE6ha_mPnrOAYEnyFk80nHYmt_hppO3AgDkO_vVLrYJXzcPPagwRromd0znfLreNFAu4p0rYTC-Jlo-sAKOM
 
 ## Using GasT in Google Apps Script
 
 There's two ways to load GasT library into your code:
 
 1. Use eval below(Recommended because it's the easist way to use GasT)  
-Zero setup, paste and run.
+   Zero setup, paste and run.
 1. GasT project key: `ME7pXzfKF5_60_TNOSJ2ylCqMEWMB0UzS`  
-Input it into script editor -> Resources -> Libraries... -> Find a Library, then click Select.
+   Input it into script editor -> Resources -> Libraries... -> Find a Library, then click Select.
 
 Install GasT is very easy: simply copy/paste the following javascript code to your Code.gs file, then you are ready to use GasT.
 
@@ -227,13 +228,14 @@ if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initia
   eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText())
 } // Class GasTap is ready for use now!
 
-var test = new GasTap()
+var test = new GasTap();
 ```
 
 Also you can decide to use the best practices from [developers.google.com](https://developers.google.com/apps-script/best_practices#use-the-cache-service). By caching data, you can reduce the number of times or frequency with which you have to fetch the data.
 
 ```javascript
-if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
+if (typeof GasTap === 'undefined') {
+  // GasT Initialization. (only if not initialized yet.)
   var cs = CacheService.getScriptCache().get('gast');
   if(!cs){
     cs = UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText();
@@ -242,24 +244,24 @@ if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initia
   eval(cs);
 } // Class GasTap is ready for use now!
 
-var test = new GasTap()
+var test = new GasTap();
 ```
 
 To use GasT, we need a wraper function(to run inside Script Editor). The following code is a simple template, you can add more test cases in the gastTestRunner() function, then run gastTestRunner() to see the test results.
 
 ```javascript
 function gastTestRunner() {
-  test('calculation', function (t) {
-  	var i = 3 + 4
-    t.equal(i, 7, 'calc 3 + 4 = 7 right')
-  })
+  test('calculation', function(t) {
+    var i = 3 + 4;
+    t.equal(i, 7, 'calc 3 + 4 = 7 right');
+  });
 
-  test('number convertion', function (t) {
-    var i = parseInt('0e0', 16)
-    t.equal(i, 224, 'parseInt')
-  })
+  test('number convertion', function(t) {
+    var i = parseInt('0e0', 16);
+    t.equal(i, 224, 'parseInt');
+  });
 
-  test.finish()
+  test.finish();
 }
 ```
 
@@ -273,8 +275,10 @@ If you want to output results to a Spreadsheet or other destinations, it's very 
 
 ```javascript
 var test = new GasTap({
-  printer: function (msg) { Logger.log(msg) }
-})
+  printer: function(msg) {
+    Logger.log(msg);
+  },
+});
 ```
 
 Above is the default setting of GasTap. You can modify the printer function based on your requirement, as long as the function accepts the same parameter.
@@ -290,32 +294,65 @@ The following example sets GasTap to output test tap results to a google spreads
 if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
   eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/huan/gast/master/src/gas-tap-lib.js').getContentText())
 } // Class GasTap is ready for use now!
-
 /**
-*
-* Create a log function that writes to google spreadsheet
-*
-*/
+ *
+ * Create a log function that writes to google spreadsheet
+ *
+ */
 var sheetPrinter = new GasLog.Printer.Spreadsheet({
-  url: 'https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0'
-  , sheetName: 'GasTap'
-})
+  url:
+    'https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0',
+  sheetName: 'GasTap',
+});
 
 var log = new GasLog({
-  printer: sheetPrinter
-  , ident: 'GasT'
-})
+  printer: sheetPrinter,
+  ident: 'GasT',
+});
 
 /**
-*
-* use the log function above to output test TAP results to Google Spreadsheet:
-* https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0
-*
-*/
+ *
+ * use the log function above to output test TAP results to Google Spreadsheet:
+ * https://docs.google.com/spreadsheets/d/1_KRAtoDz2Pdcj9IPZI007I_gMzRyfmXf7gicgxVwYJc/edit#gid=0
+ *
+ */
 var test = new GasTap({
-  logger: log
-})
+  logger: log,
+});
 ```
+
+## Adding the library to your project
+
+GasTap for Google Apps Script is made available as a script library. This is how you add it to your project:
+
+1. Select "Resources" > "Libraries..." in the Google Apps Script editor.
+2. Enter the project key (`1r5AqoOrzto3y7eqDmkhlNGXB-_6LCZM9AoS4AIp_eU-atwOchVVzOf1L`) in the "Find a Library" field, and choose "Select". (If you have copied the library, enter instead the project key of your copy.)
+3. Select the highest version number, and choose GasTap as the identifier. (Do not turn on Development Mode unless you know what you are doing. The development version may not work.)
+4. Press Save. You can now use the GasTap library in your code.
+
+## Loading the library
+
+To load GasTap:
+
+```js
+var test = GasTap.getInstance();
+```
+
+## Develop
+
+GasTap has three using modes:
+
+1. Direct use. You can fetch the code to your project directly via `UrlFetchApp.fetch`
+1. Library use. You can get an instance of the `GasTap` via Google Apps Script library `1r5AqoOrzto3y7eqDmkhlNGXB-_6LCZM9AoS4AIp_eU-atwOchVVzOf1L`
+1. Develop mode. You can push the GasTap code to your project.
+
+For the developer mode we use [@gogole/clasp](https://github.com/google/clasp) as a command line tool for pushing GasTap library. clasp allows you to develop your Apps Script projects locally. That means you can check-in your code into source control, collaborate with other developers, and use your favorite tools to develop Apps Script.
+
+The following command line commands are available:
+
+1. Pushing the project `$> ./scripts/pull.sh`
+1. Pushing the project with the last code `$> ./scripts/pull.sh force`
+1. Pushing the project with the last code with tests `$> ./scripts/pull.sh force tests`
 
 ## Support
 
@@ -323,14 +360,14 @@ The GasT source code repository is hosted on GitHub. There you can file bugs on 
 
 For real-world examples from open-source projects using GasT, see Projects Using TasT on the wiki. ( https://github.com/huan/gast/wiki )
 
-
 ## Version history
 
 ### [v0.3.0](https://github.com/huan/gast/tree/v0.3.0) (Feb 26, 2016)
 
-* Published with project key `ME7pXzfKF5_60_TNOSJ2ylCqMEWMB0UzS`(thanks @[brucemcpherson](https://github.com/brucemcpherson) for suggestion)
+- Published with project key `ME7pXzfKF5_60_TNOSJ2ylCqMEWMB0UzS`(thanks @[brucemcpherson](https://github.com/brucemcpherson) for suggestion)
 
 ### [v0.2.0](https://github.com/huan/gast/tree/v0.2.0) (December 14, 2015)
+
 * Support output to spreadsheet (LogEnteries, etc). powered by [GasLog](https://github.com/huan/gasl) modle.
 
 Use v0.2.0 in GAS
@@ -348,7 +385,6 @@ if ((typeof GasTap)==='undefined') {
 ```
 
 ### v0.1.0 (December 2, 2015)
-* Initial public release.
 
 ## Links
 
