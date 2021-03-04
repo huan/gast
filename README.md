@@ -59,7 +59,7 @@ TAP Specification 13: http://testanything.org/tap-version-13-specification.html
 
 ## Writing tests
 
-There's a very simple example at https://github.com/huan/gast/blob/master/src/gas-tests.js, which is the test suite of GasT itself.
+There's a very simple example at https://github.com/huan/gast/blob/master/src/gast-tests.js, which is the test suite of GasT itself.
 
 ### `test(msg, cb)`: Create sub test
 
