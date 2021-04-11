@@ -4,7 +4,7 @@ GasT is a [TAP](http://testanything.org/)-compatable testing framework for Googl
 
 Github: https://github.com/huan/gast
 
-A GasT unit test file is a javascript which defines GAS unit testing cases. Behind the scenes, each GAS test case is simply a function that takes a description parameter, and outputs in TAP format.
+A GasT unit test file is a javascript file which defines GAS unit testing cases. Behind the scenes, each GAS test case is simply a function that takes a description parameter, and outputs in TAP format.
 
 ```javascript
 if ((typeof GasTap)==='undefined') { // GasT Initialization. (only if not initialized yet.)
