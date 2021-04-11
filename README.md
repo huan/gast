@@ -181,7 +181,7 @@ if (test.totalFailed()>0) {
 
 ## Running tests
 
-To run your tests, open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](https://github.com/huan/gast/blob/master/src/gas-tests.js) into it, then click Run in menu, select function `gastTestRunner` . After click, you will get a message "Running function gast...". Wait until the message disapears, then click View in menu, select Logs. You will see the output like the following snapshot.
+To run your tests, open [google apps script editor](https://script.google.com), create a script file named Tests.gs, paste [tests of GasT](src/gast-tests.js) into it, then click Run in menu, select function `gastTestRunner` . After click, you will get a message "Running function gast...". Wait until the message disapears, then click View in menu, select Logs. You will see the output like the following snapshot.
 
 If GasT uses the default printDriver Logger, it will print message in Google Apps Script Logger.log(). If GasT is not run inside google apps script, in other words, if you run it from a continuous integration system, you can use other printDriver like ```ConsoleLog```(currenlty not supported), it will output in machine-parsable TAP format.
 
